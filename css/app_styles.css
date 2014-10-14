@@ -1,0 +1,32 @@
+/*
+
+	CUSTOM STYLES FOR MINIMARKET'S ADMIN
+
+*/
+
+/* ALIGNMENT STYLES */
+
+.float_left { float: left; }
+
+.float_right { float: right; }
+
+/* FONT STYLES */
+
+.bold { font-weight: bold; }
+
+.red { color: red; }
+
+.blue { color: blue; }
+
+.light_blu { color: light_blue; }
+
+.gray { color: gray; }
+
+.size12 { font-size: 12px; }
+
+.inputError { border-color: #E96666; outline: 0; -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(233, 102, 102, 0.6); border-top-color: rgb(233, 102, 102); }
+
+
+/*------------------------*/
+
+.login_error { margin: 10px 0 0 0; }
