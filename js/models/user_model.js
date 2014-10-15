@@ -9,23 +9,10 @@
 app.UserModel = Backbone.Model.extend({
 	
 	defaults:{
+		id:0,
 		username: '',
-		pswd: '',
-		email:'',
-		fullName: ''
+		pswd: ''
 	},
-	
-	// poco comun que este aqui, gralmente la validacion suele estar en la vista
-	validate: function (data)
-	{
-		if (data.username != '') {
-			return 'you must set up an username';
-		}
-		
-		if (data.pswd != ''){
-			return 'you must set up a password in order to login to your session';
-		}
-	}
 	
 });
 

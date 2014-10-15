@@ -1,21 +1,5 @@
 
 
-/*
- * model name: auth_model
- * extension: js
- * description: 
- */
-
-
-app.AuthModel = Backbone.Model.extend({
-	
-	defaults:{
-		id: 0,
-		usrname:'',
-		pswd: ''
-	}
-	
-});
 
 
 /*
