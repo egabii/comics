@@ -10,30 +10,46 @@ app.AuthView = Backbone.View.extend({
 	
 	el: '#app_content',
 	
-	template: $('#tpl_login').html(),
+	template: _.template($('#tpl_login').html()),
 	
 	events: {
 		'click #btn-signin'   : 'login',
 		'click #btn-register' : 'register'
 	},
 	
-	initialize: function (){ this.render(); },
+	initialize: function (){ 
+		this.render(); 
+		//console.log(this.template());	
+	},
 	
-	render: function (){ this.$el.html(this.template); }, 
+	render: function ()
+	{ 
+		this.$el.html(this.template); 
+		console.log(this.$el.html(this.template));
+	}, 
 	
 	login: function (e)
 	{
-		e.preventDefault();
+		//e.preventDefault();
 		var userlog = {
 			username: $('#username_input').val(),
 			pswd: $('#pswd_input').val()
 		};
-		// aca tendría que ir login! 
-		if (!app.session_collection.check_login(userlog)){
-			window.location.replace("#home");
-		}else{
-			console.log(" or you don't exist or you don't have an account ");	
+		
+		if (app.user_collection.ifExist(userlog)){
+			this.userLogueado = app.user_collection.findWhere(userlog);
+			
+			if (this.userLogueado.get('admin')){
+				console.log("you're an admin");
+				window.location.replace('#admin-page');
+			}else{
+				console.log('user login');
+				window.location.replace('#home');	
+			}
+			
 		}
+		
+		
 	},
 	
 	register: function (){ window.location.replace('#register'); }
@@ -43,7 +59,7 @@ app.RegisterView = Backbone.View.extend({
 	
 	el: '#app_content',
 	
-	template: $('#tpl_register').html(),
+	template: _.template($('#tpl_register').html()),
 	
 	events: {
 		'click #btn-register' :	'createAccount',
@@ -52,26 +68,24 @@ app.RegisterView = Backbone.View.extend({
 	
 	initialize: function (){ this.render(); },
 	
-	render: function (){ this.$el.html(this.template); },
+	render: function (){ 
+		this.$el.html(this.template); 
+		return this;	
+	},
 	
 	createAccount: function(e)
 	{
 		//e.preventDefault();
 		if ($('#username_input').val() && $('#pswd_input').val()){
 			var user = {
-			username: $('#username_input').val(),
-			pswd: $('#pswd_input').val()
+				username: $('#username_input').val(),
+				pswd: $('#pswd_input').val()
 			};
 			var result = app.user_collection.createNewUser(user);
-			window.location.replace('#home');	
+			window.location.hash = '' ;	
 		}else{
 			$('.text-danger').removeClass('hidden');
-			if ($('#username_input').val()){
-				/*$('#username_input').on('blur',function(){}); */	
-			}
 		}
-		
-		
 	},
 	
 	notCreateAccount: function (){ window.location.replace(''); }

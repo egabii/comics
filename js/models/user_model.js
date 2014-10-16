@@ -11,7 +11,8 @@ app.UserModel = Backbone.Model.extend({
 	defaults:{
 		id:0,
 		username: '',
-		pswd: ''
+		pswd: '',
+		admin:false // profile
 	},
 	
 });

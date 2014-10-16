@@ -12,7 +12,8 @@ app.SessionModel = Backbone.Model.extend({
 	
 	defaults:{
 		id:0,
-		session: ''
+		session: '',
+		username:''
 	}
 	
 });
