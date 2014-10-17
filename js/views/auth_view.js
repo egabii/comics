@@ -14,45 +14,53 @@ app.AuthView = Backbone.View.extend({
 	
 	events: {
 		'click #btn-signin'   : 'login',
-		'click #btn-register' : 'register'
+		'click #btn-register' : 'register',
+		'click #btn-logout'   : 'logout'
 	},
 	
-	initialize: function (){ 
+	initialize: function ()
+	{ 
 		this.render(); 
-		//console.log(this.template());	
 	},
 	
 	render: function ()
 	{ 
 		this.$el.html(this.template); 
-		console.log(this.$el.html(this.template));
 	}, 
 	
-	login: function (e)
+	login: function (evt)
 	{
-		//e.preventDefault();
-		var userlog = {
+		if (evt) evt.preventDefault();
+		
+		var user = {
 			username: $('#username_input').val(),
 			pswd: $('#pswd_input').val()
 		};
+		var login = app.session_collection.login(user);
+		console.log(login);
 		
-		if (app.user_collection.ifExist(userlog)){
-			this.userLogueado = app.user_collection.findWhere(userlog);
+		if (login){
+			this.userLogueado = app.user_collection.findWhere(user);
 			
 			if (this.userLogueado.get('admin')){
 				console.log("you're an admin");
-				window.location.replace('#admin-page');
+				location.hash = '#admin-page';
 			}else{
-				console.log('user login');
-				window.location.replace('#home');	
+				console.log("your're a guest");
+				location.hash = '#home';	
 			}
 			
+		}else{
+			console.log('not login!! ');
 		}
-		
-		
 	},
 	
-	register: function (){ window.location.replace('#register'); }
+	register: function (){ location.hash = '#register'; },
+	
+	logout: function()
+	{
+		app.session_collection.logout();
+	}
 });
 
 app.RegisterView = Backbone.View.extend({
@@ -73,22 +81,27 @@ app.RegisterView = Backbone.View.extend({
 		return this;	
 	},
 	
-	createAccount: function(e)
+	createAccount: function(evt)
 	{
-		//e.preventDefault();
+		if (evt) evt.preventDefault();
+		
 		if ($('#username_input').val() && $('#pswd_input').val()){
 			var user = {
 				username: $('#username_input').val(),
 				pswd: $('#pswd_input').val()
 			};
 			var result = app.user_collection.createNewUser(user);
-			window.location.hash = '' ;	
+			console.log(result);
+			console.log(app.user_collection.models,' models in user_collection');
+			if (result) {
+				window.location.hash = '#' ;	
+			}	
 		}else{
 			$('.text-danger').removeClass('hidden');
 		}
 	},
 	
-	notCreateAccount: function (){ window.location.replace(''); }
+	notCreateAccount: function (){ location.hash = '#'; }
 	
 });
 

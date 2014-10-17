@@ -7,38 +7,66 @@ app.SessionCollection = Backbone.Collection.extend({
 	
 	model: app.SessionModel, // always say what model belongs to this collection
 	localStorage: new Backbone.LocalStorage('session_store'), // sth that you need to 
+	
+	login: function ( data ) {
 
-	login: function ( data )
-	{	
-		// verify if the user exist and ask if the user is logged
-		if (!this.check_login()){
-			session = new app.SessionModel({ session: true, username:data.username });
-			this.add(session);
-			session.save();	
-			// login succeessed
+		// GET USER DATA
+		var user = app.user_collection.findWhere(data);
+		console.log(user);
+		// CHECK IF EXIST
+		if(user)
+		{
+			this.fetch();
+
+			var session = this.get(0);
+			console.log(session);
+			if(!session)
+			{
+				session = new app.SessionModel({ 
+					session	 : true, 
+					username : user.get('username') 
+				});
+				//console.log(session.toJSON());
+				this.add(session);
+				session.save();
+				this.fetch();
+			}
+			else
+			{
+				session.set({
+					session  : true,
+					username : user.get('username')
+				});
+				session.save();
+				this.fetch();
+			}
+
 			return true;
 		}
-		// login failed
+		// LOGIN FAIL
 		return false;
+		
 	},
 	
 	check_login: function () {
-
+		
+		this.fetch();
 		// GET SESSION DATA
 		var session = this.get(0);
+		console.log(session, 'session ');
 		// CHECK IF EXIST
 		if (session){
 			// STILL LOGIN
 			return true;
 		}
-		return false;
+		return false; // not login anymore
 	},
 
 	logout: function () {
 
 		// GET USER DATA
-		app.session_collection.fetch();
-		var session = app.session_collection.get(0);
+		this.fetch();
+		var session = this.get(0);
 
 		if (!session){
 			// CHANGE STATUS TO FALSE
@@ -49,7 +77,7 @@ app.SessionCollection = Backbone.Collection.extend({
 			this.fetch();
 		}
 
-		window.location.replace('#sign-in');
+		window.location.replace('');
 	}
 });
 

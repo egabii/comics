@@ -15,14 +15,14 @@ compiled({name: 'moe'});
 app.HomeView = Backbone.View.extend({
 	
 	el: '#app_content',
-	template: _.template($('#tpl_home').html()),
+	template: $('#tpl_home').html(),
 	
-	// initialize: function() { this.render(); },
-	render: function(){
-		var tpl = this.template({});
-		this.$el.html(tpl);
-	}
-	
+    render: function () {
+        var tmpl = _.template(this.template); //tmpl is a function that takes a JSON object and returns html
+
+        this.$el.html(tmpl); //this.el is what we defined in tagName. use $el to get access to jQuery html() function
+        return this;
+    }
 });
 
 app.home_view = new app.HomeView();

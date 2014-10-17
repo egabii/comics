@@ -5,24 +5,22 @@
  */
 
 
-/*
- * var compiled = _.template("hello: <%= name %>");
-compiled({name: 'moe'});
-=> "hello: moe" 
- */
+
 
 
 app.AdminView = Backbone.View.extend({
 	
 	el: '#app_content',
-	template: $('#tpl-admin').html(),
-	initialize: function() { 
-		//this.template = _.template($('#tpl-admin').html());
-		this.render(); 
-	},
-	render: function(){
-		this.$el.html( this.template);
-	}
+	template: $('#tpl_admin').html(),
+	model: app.user_collection.get(0),
+    render: function () 
+    {
+    	console.log('view');
+        var tmpl = _.template(this.template); //tmpl is a function that takes a JSON object and returns html
+       
+        this.$el.html(tmpl); //this.el is what we defined in tagName. use $el to get access to jQuery html() function
+        return this;
+    }
 	
 });
 

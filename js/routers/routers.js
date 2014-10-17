@@ -22,13 +22,22 @@ app.Routers = Backbone.Router.extend({
 	{
 		app.register_view.render();
 	},
-	home: function ()
-	{
-		app.home_view.render();
-	},
+    home : function () 
+    { 
+    	var login = app.session_collection.check_login();
+	
+    	if (login){
+    		app.home_view.render();
+    	}
+     },
 	admin: function ()
 	{
-		app.admin_view.render();
+		var login = app.session_collection.check_login(); // bool 
+		console.log(login);
+		if (login){
+			app.admin_view.render();	
+		}
+		
 	}
 	
 });

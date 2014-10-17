@@ -40,6 +40,7 @@ app.UserCollection = Backbone.Collection.extend({
 			 */
 
 			var user_auth = regexp.exec(data.username); // return an array
+			console.log(user_auth,'result of regex');
 			var pswd_auth = regexp_pswd.exec(data.pswd); // return an array
 			var lastOne = this.length == 0 ? 0: (this.length - 1); // assign id !
 			
@@ -48,6 +49,7 @@ app.UserCollection = Backbone.Collection.extend({
 				var user = new app.UserModel(data);
 				this.add(user);
 				user.save();
+				this.fetch();
 				return true;
 			}
 			return false;

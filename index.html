@@ -9,6 +9,7 @@
 
     	<!-- Bootstrap -->
     	<link href="css/contrib/bootstrap.min.css" rel="stylesheet">
+    	<link  href="css/comic_style.css" type="text/css" rel="stylesheet"/>
     	
 	    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -55,18 +56,55 @@
 				</form>
 			</script>
 			
-			<script type="text/template" id="tpl_home">
-				<h1> You have entered into the home page </h1>
-			</script>
-			<script type="text/template" id="tpl_admin">
-				<h1> You have entered into the admin page </h1>
-			</script>
-
 		</div>
+		<script type="text/template" id="tpl_home">
+			<h1> You have entered into the home page </h1>
+			
+		</script>
+		<script type="text/template" id="tpl_admin">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="page-header"></div>
+					<div class="navbar navbar-default" role="navigation">
+				        <div class="container-fluid">
+				          <div class="navbar-header">
+<!--				            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+				              <span class="sr-only">Toggle navigation</span>
+				              <span class="icon-bar"></span>
+				              <span class="icon-bar"></span>
+				              <span class="icon-bar"></span>
+				       </button>   -->
+				            <a class="navbar-brand" href="#admin-page"><img src="img/comic_icon.jpg" class="comic-icon"/></a>
+				          </div>
+				          <div class="navbar-collapse collapse">
+				            <ul class="nav navbar-nav">
+				              <li><a href="#admin-page"> Comics </a></li>
+				              <li class="active"><a href="#admin-page"> Users Guest </a></li>
+				              <li><a href="#admin-page"> Loans </a></li>
+				            </ul>
+				            
+				            <ul class="nav navbar-nav navbar-right">
+				            	<li class="dropdown">
+					                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
+					                <ul class="dropdown-menu" role="menu">
+					                  <li id="btn-logout"><a>logout</a>  </li>
+					                  <li><a href="#admin-page">profile</a></li>
+
+					                </ul>
+				           	 	</li>
+				            </ul>
+				          </div><!--/.nav-collapse -->
+				        </div><!--/.container-fluid -->
+			      </div>
+				</div>
+			</div>	
+			<h1> this is the body </h1>
+		</script>
 		
 		<!-- libraries -->
 		<script src="js/lib/jquery-1.11.1.min.js"></script>
 		<script src="js/lib/bootstrap.min.js"></script>
+		<script src="js/lib/underscore.js"></script>
 		<script src="js/lib/underscore-min.js"></script>
 		<script src="js/lib/backbone-min.js"></script>
 		<script src="js/lib/backbone.localStorage.js"></script>
@@ -80,7 +118,7 @@
 		<!-- collections -->
 		<script src="js/collections/user_collection.js"></script>
 		<script src="js/collections/session_collection.js"></script>
-		<!-- collections -->
+		<!-- views -->
 		
 		<script src="js/views/auth_view.js"></script>
 		<script src="js/views/home_view.js"></script>
