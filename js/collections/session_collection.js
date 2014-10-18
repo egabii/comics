@@ -19,7 +19,6 @@ app.SessionCollection = Backbone.Collection.extend({
 			this.fetch();
 
 			var session = this.get(0);
-			console.log(session);
 			if(!session)
 			{
 				session = new app.SessionModel({ 
@@ -67,17 +66,20 @@ app.SessionCollection = Backbone.Collection.extend({
 		// GET USER DATA
 		this.fetch();
 		var session = this.get(0);
-
-		if (!session){
+		console.log(session);
+		if (session.get('session')){
 			// CHANGE STATUS TO FALSE
-			session.set({
+			this.remove(session);
+			this.fetch();
+			return true;
+			/*session.set({
 				session: false
 			});
 			session.save();
-			this.fetch();
+			this.fetch(); */
 		}
+		return false;
 
-		window.location.replace('');
 	}
 });
 

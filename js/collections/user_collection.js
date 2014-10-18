@@ -22,6 +22,7 @@ app.UserCollection = Backbone.Collection.extend({
 		admin: true
 		};
 		this.create(admin);
+		//this.fetch();
 	},
 
 	createNewUser: function (data)
@@ -47,20 +48,23 @@ app.UserCollection = Backbone.Collection.extend({
 			if (user_auth[0] === data.username && data.pswd === pswd_auth[0]){
 				data.id = lastOne + 1;
 				var user = new app.UserModel(data);
-				this.add(user);
+				this.push(user);
 				user.save();
 				this.fetch();
 				return true;
 			}
 			return false;
+		}else{
+			console.log(data,' ya existe');
 		}
 	},
 	
 	ifExist: function (data)
 	{
-		var result = this.find(function (model){ 
+		var result = this.findWhere(data);
+		/*var result = this.find(function (model){ 
 			return model.get('username') === data.username; 
-		});
+		}); */
 		
 		if (result != undefined){
 			return true;
@@ -86,6 +90,9 @@ app.UserCollection = Backbone.Collection.extend({
 
 
 app.user_collection = new app.UserCollection();
+// brings all the models save in the localStorage
+app.user_collection.fetch();
+
 
 //console.log(app.user_collection.localStorage);
 

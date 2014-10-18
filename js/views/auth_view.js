@@ -59,7 +59,10 @@ app.AuthView = Backbone.View.extend({
 	
 	logout: function()
 	{
-		app.session_collection.logout();
+		var logout = app.session_collection.logout();
+		if (logout){
+			location.hash = '';
+		}
 	}
 });
 
@@ -91,10 +94,10 @@ app.RegisterView = Backbone.View.extend({
 				pswd: $('#pswd_input').val()
 			};
 			var result = app.user_collection.createNewUser(user);
-			console.log(result);
+			console.log(result, 'resultado de la registracion');
 			console.log(app.user_collection.models,' models in user_collection');
 			if (result) {
-				window.location.hash = '#' ;	
+				location.hash = '#' ;	
 			}	
 		}else{
 			$('.text-danger').removeClass('hidden');
