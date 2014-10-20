@@ -12,42 +12,70 @@ app.Routers = Backbone.Router.extend({
 		'register'  : 'register',
 		'home'      : 'home',
 		'admin-page': 'admin',
-		'logout'	: 'logout'			
+		'logout'	: 'logout',
+		'comics'	: 'comics',
+		'comics/:id': 'comicDetail'	
 	},
 	
 	login: function ()
 	{
 		app.auth_view.render();
 	},
+	
 	register: function ()
 	{
 		app.register_view.render();
 	},
+	
     home : function () 
     { 
     	var login = app.session_collection.check_login();
 	
     	if (login){
     		app.home_view.render();
-    		app.navbar_guest_view.render();	
+    		app.navbar_guest_view.render(app.session_collection.get(0).get('username'));
+    		app.comic_view.renderMostRecommended();
+    		app.footer_view.render();
     	}else{
     		location.hash = '';
     	}
-     },
+    },	
+	comics: function ()
+	{
+		var login = app.session_collection.check_login();
+		if(login){
+			app.comic_view.renderList();
+			app.navbar_guest_view.render(app.session_collection.get(0).get('username'));
+    		app.comic_view.renderMostRecommended();
+    		app.footer_view.render();
+		}
+		
+	},
+/*	comicDetail: function()
+	{
+		var login = app.session_collection.check_login();
+		if(login){
+			app.comic_view.renderComic();
+			app.navbar_guest_view.render(app.session_collection.get(0).get('username'));
+    		app.comic_view.renderMostRecommended();
+    		app.footer_view.render();
+		}
+	}, */
+	logout: function () 
+	{ 
+		app.auth_view.logout();
+	
+	},
+	
 	admin: function ()
 	{
 		var login = app.session_collection.check_login(); // bool 
-		console.log(login);
 		if (login){
 			app.admin_view.render();	
 		}else{
 			location.hash = '';
 		}
 		
-	},
-	logout: function () 
-	{ 
-		app.auth_view.logout(); 
 	}
 	
 });

@@ -69,14 +69,10 @@ app.SessionCollection = Backbone.Collection.extend({
 		console.log(session);
 		if (session.get('session')){
 			// CHANGE STATUS TO FALSE
-			this.remove(session);
+			var aux = this.remove(session);
+			aux.destroy();
 			this.fetch();
 			return true;
-			/*session.set({
-				session: false
-			});
-			session.save();
-			this.fetch(); */
 		}
 		return false;
 

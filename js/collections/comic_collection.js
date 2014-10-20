@@ -11,6 +11,15 @@ app.comicCollection = Backbone.Collection.extend({
 	model: app.comicModel,
 	localStorage: new Backbone.LocalStorage('comics_store'),
 	
+	most_recommended: function ()
+	{
+		// only the 5 most recommended
+		var comics = this.toJSON(); // array of models
+		
+		return comics.sort(function(a,b){
+			return b.recommended - a.recommended;
+		}).slice(0,5);
+	},
 	nextOrder: function()
 	{
 		if (!this.length){
@@ -34,7 +43,9 @@ app.comic_collection.create({
 	title:'Batman Dectective Vol 2-22',
 	creator:'lorem ipsum',
 	cover: 'img/covers/Batman_Detective_Comics_Vol_2_22.jpg',
-	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus'
+	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',
+	genre:'police',
+	recommended:2
 });
 
 app.comic_collection.create({
@@ -42,7 +53,9 @@ app.comic_collection.create({
 	title:'Daredevil',
 	creator:'universal comics',
 	cover: 'img/covers/daredevil_thManWithOutFear.jpg',
-	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus'
+	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',
+	genre:'action',
+	recommended:20
 });
 
 app.comic_collection.create({
@@ -51,7 +64,9 @@ app.comic_collection.create({
 	creator:'universal comics',
 	edition: 'special edition',
 	cover: 'img/covers/superman_vs_voosterGold.jpg',
-	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus'
+	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',
+	genre:'superheroe',
+	recommended:12
 });
 
 app.comic_collection.create({
@@ -59,7 +74,9 @@ app.comic_collection.create({
 	title:'Thor',
 	creator:'marvel comics',
 	cover: 'img/covers/Thor.jpg',
-	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus'
+	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',
+	genre:'superheroe',
+	recommended:100
 });
 
 app.comic_collection.create({
@@ -67,7 +84,9 @@ app.comic_collection.create({
 	title:'Thor journey into mystery',
 	creator: 'marvel comics',
 	cover: 'img/covers/thor_journey_into_mystery.jpg',
-	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus'
+	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',
+	genre:'superheroe',
+	recommended:12
 });
 
 app.comic_collection.create({
@@ -76,7 +95,9 @@ app.comic_collection.create({
 	creator:'lorem ipsum',
 	edition:'fallen edition',
 	cover: 'img/covers/Batman_Detective_Comics_Vol_2_2.jpg',
-	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus'
+	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',
+	genre:'police',
+	recommended:50
 });
 
 app.comic_collection.create({
@@ -85,7 +106,9 @@ app.comic_collection.create({
 	creator: 'Marvel Comic',
 	edition: 'Custom Edition',
 	cover: 'img/covers/iron_man_custom_edition.jpg',
-	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus'	
+	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',	
+	genre:'science-fiction',
+	recommended:124
 });
 
 app.comic_collection.create({
@@ -94,8 +117,9 @@ app.comic_collection.create({
 	creator: 'Mad comics',
 	edition: 'Mad Edition',
 	cover: 'img/covers/spawn_comic.jpg',
-	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus'
-
+	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',
+	genre:'thriller',
+	recommended: 60
 });
 
 

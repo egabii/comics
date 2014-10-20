@@ -21,5 +21,6 @@ app.comicModel = Backbone.Model.extend({
 		recommended:0,
 		searched:0,
 		qualification:0,
+		available: true
 	}
 });

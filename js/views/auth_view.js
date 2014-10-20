@@ -91,21 +91,35 @@ app.RegisterView = Backbone.View.extend({
 	createAccount: function(evt)
 	{
 		if (evt) evt.preventDefault();
-		
-		if ($('#username_input').val() && $('#pswd_input').val()){
-			var user = {
+		var user = {
+				fullname: $('#fullname_input').val(),
+				email: $('#email_input').val(),
+				address: $('#address_input').val(),
 				username: $('#username_input').val(),
 				pswd: $('#pswd_input').val()
 			};
+		console.log(this.validate(user));
+		if (this.validate(user)){
+
 			var result = app.user_collection.createNewUser(user);
 			console.log(result, 'resultado de la registracion');
 			console.log(app.user_collection.models,' models in user_collection');
 			if (result) {
-				location.hash = '' ;	
-			}	
+				location.hash = '#' ;	
+			}else{
+				$('.text-danger').removeClass('hidden');
+			}
 		}else{
 			$('.text-danger').removeClass('hidden');
 		}
+	},
+	
+	validate: function (user)
+	{
+		if (user.fullname != '' && user.email != '' && user.address != '' && user.username != '' && user.pswd != ''){
+			return true;
+		}
+		return false;
 	},
 	
 	notCreateAccount: function ()

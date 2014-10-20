@@ -11,9 +11,9 @@
 
 
 app.UserCollection = Backbone.Collection.extend({
-	model: app.UserModel,
+	model: app.userModel,
 	localStorage: new Backbone.LocalStorage('user_store'),
-	
+	url: 'users',
 	initialize: function ()
 	{
 		var admin = {
@@ -22,6 +22,7 @@ app.UserCollection = Backbone.Collection.extend({
 		admin: true
 		};
 		this.createNewUser(admin);
+		this.fetch();
 	},
 
 	createNewUser: function (data)
@@ -40,13 +41,12 @@ app.UserCollection = Backbone.Collection.extend({
 			 */
 
 			var user_auth = regexp.exec(data.username); // return an array
-			//console.log(user_auth,'result of regex');
 			var pswd_auth = regexp_pswd.exec(data.pswd); // return an array
-			// var lastOne = this.length == 0 ? 0: (this.length - 1); // assign id !
+
 			
 			if (user_auth[0] === data.username && data.pswd === pswd_auth[0]){
 				data.id = this.nextOrder();
-				var user = new app.UserModel(data);
+				var user = new app.userModel(data);
 				this.add(user);
 				user.save();
 				this.fetch();
@@ -70,7 +70,8 @@ app.UserCollection = Backbone.Collection.extend({
 	deleteUser: function (data)
 	{
 		if (this.ifExist(data)) {
-			this.remove(user);
+			var user = this.remove(data);
+			user.destroy();
 			this.fetch();
 			
 		}else{
@@ -98,9 +99,6 @@ app.UserCollection = Backbone.Collection.extend({
 
 
 app.user_collection = new app.UserCollection();
-// brings all the models save in the localStorage
-app.user_collection.fetch();
-
 
 //console.log(app.user_collection.localStorage);
 

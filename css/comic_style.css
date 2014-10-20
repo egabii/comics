@@ -1,5 +1,12 @@
 
 
+/*
+ * Login and register
+ */
+.login-title, .register-title{ 
+	font-weight: bold; 
+	float:left	
+}
 
 div.page-header {
 	background-image: url('http://local.comics/img/covers_.jpg');
@@ -20,3 +27,28 @@ div.page-header {
     float: none;
     margin: 0 auto;
 }
+
+#footer_content { background-color: #eee; }
+
+.box {
+	display: inline-block;
+	width: 30%;
+}
+
+.box.navigation { 
+	float: left; 
+	border-right: 1px solid #000000;
+	text-align: center;
+}
+
+.box.contact-box { 	
+	border-right: 1px solid #000000; 
+	text-align: center;
+}
+
+.box.social_network { 
+	float: right;  
+	text-align: center;
+}
+
+.box li { list-style: none; }

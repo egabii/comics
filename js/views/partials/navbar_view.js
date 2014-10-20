@@ -8,10 +8,13 @@ app.navbarView = Backbone.View.extend({
 
 	el: '#app_navbar',
 	tagName: 'div',
+	model: app.userModel,
 	template: $('#tpl_navbar_partial').html(),
 
-	render: function () {
-		this.$el.html( this.template );
+	render: function (user) {
+		var tpl = _.template(this.template, { guest : user });
+		this.$el.html( tpl );
+		return this;
 	}
 
 });

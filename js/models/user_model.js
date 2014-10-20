@@ -6,10 +6,13 @@
  */
 
 
-app.UserModel = Backbone.Model.extend({
+app.userModel = Backbone.Model.extend({
 	
 	defaults:{
 		id:0,
+		fullname:'',
+		email:'',
+		address:'',
 		username: '',
 		pswd: '',
 		admin:false // profile

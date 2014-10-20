@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en">
-	
+<html lang="en">	
 	<head>
 		<meta charset="utf-8" />
   		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,68 +24,23 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="page-header">&nbsp;</div>	
-				</div>
+				</div>				
 			</div>
 		</header>
 		<div id="app_navbar" class="container">
 			
 		</div>
-		<div id="app_content" class="container">
-			
-			<script type="text/template" id="tpl_login">
-				<div class="panel panel-default" style="width: 300px; margin: auto;">
-					<div class="panel-heading" style="overflow: hidden;">
-						<div class="float_left bold">
-							LOGIN
-						</div>
-    					<div style="float: right;">
-    						<img class="comic-icon" style="margin: 0 30px 0 30px;"src="img/comic_icon.jpg" align="absmiddle" />
-    					</div>
-					</div>
-					<div class="panel-body">
-	
-						<div class="form-group">
-					    	<label for="username_input">Username</label>
-					    	<input type="text" class="form-control" id="username_input" placeholder="Enter username">
-					  	</div>
-					  	<div class="form-group">
-					    	<label for="pswd_input">Password</label>
-					    	<input type="password" class="form-control" id="pswd_input" placeholder="Enter password">
-					  	</div>
-					  	<button type="submit" class="btn btn-default" id="btn-signin">Log in</button>
-					  	<button type="button" class="btn btn-default" id="btn-register"> Register</button>
-					  	<p> if you don't an account, please just create one</p>
-					</div>
-				</div>
-			</script>
-			
-			<script type="text/template" id="tpl_register">
-				<div class="panel panel-default" style="width: 300px; margin: auto;">
-					<div class="row">
-    				<div class="col-md-2 col col-centered">
-    					<img class="float-left" style="margin: 0 30px 0 30px;"src="img/comic_icon.jpg" align="absmiddle" />
-    				</div>
-					</div>
-
-					<div class="panel-body">
-						<h4> Create an account </h4>
-						 <div class="form-group">
-						    <label for="username_input">Username</label>
-						    <input type="text" class="form-control" id="username_input" placeholder="Enter username">
-						 </div>
-						 <div class="form-group">
-						    <label for="pswd_input">Password</label>
-						    <input type="password" class="form-control" id="pswd_input" placeholder="Enter password">
-						 </div>
-						 <button type="button"class="btn btn-default" id="btn-register"> create account </button>
-						 <button type="button" class="btn btn-default" id="btn-cancel"> cancel </button>
-						 <p class="text-danger hidden" > there's something miss </p>
-					</div>
-				</div>
+		<div class="container">
+			<div class="row">
+				<div id="app_content">
 				
-	
-			</script>
-			
+				</div>
+		
+				<div id="sidebar_content" class="col-md-4">
+				
+				</div>
+			</div>
+
 		</div>
 		<footer id='footer_content' class="container">
 			
@@ -110,14 +64,13 @@
 				          </div>
 				          <div class="navbar-collapse collapse">
 				            <ul class="nav navbar-nav">
-				              <li><a href="#home"> Comics </a></li>
-				              <li class="active"><a href="#home"> Users Guest </a></li>
+				              <li><a href="#comics"> Comics </a></li>
 				              <li><a href="#home"> Loans </a></li>
 				            </ul>
 				            
 				            <ul class="nav navbar-nav navbar-right">
 				            	<li class="dropdown">
-					                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Guest <span class="caret"></span></a>
+					                <a href="#home" class="dropdown-toggle" data-toggle="dropdown"><%= guest %> <span class="caret"></span></a>
 					                <ul class="dropdown-menu" role="menu">
 					                  <li ><a href="#logout">logout</a>  </li>
 					                  <li><a href = "#user/profile">profile</a></li>
@@ -132,23 +85,130 @@
 				</div>
 			</div>	
 		</script>
-		<!-- TEMPLATE HOME GUEST USER -->
-		<script type="text/template" id="tpl_home">
+		
+		<!-- TEMPLATE FOOTER SECTION  -->
+		<script type="text/template" id="footer_section">
 			<div class="row">
-			
 				<div class="col-md-12">
-					<div class="jumbotron">
-						<h1>Hello, and welcome to COMICS!</h1>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
-						sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-						 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-						 nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
-						 voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
-						 cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					<div class="box navigation">
+						<h4> PAGES </h4>
+						<ul>
+							<li><a href="#home"> Home </a></li>
+							<li><a href="#home"> Comics </a></li>
+							<li><a href="#home"> Loans </a></li>
+						</ul>
+					</div>
+					<div class=" box contact-box">
+						<h4> CONTACT ME </h4>
+						<ul >
+							<li> <strong> Tel.</strong> 362-15-4343312 </li>
+							<li> <strong> Address </strong> Calle Falsa 123, Pasadena California </li>
+							<li> <strong> Email </strong> sheldon.cooper@example.com </li>
+						</ul>	
+					</div>
+					<div class=" box social_network">
+						<h4> FOLLOW ME </h4>
+						<ul >
+							<li><a href="#home"> Facebook </a></li>
+							<li><a href="#home"> Twitter </a></li>
+							<li><a href="#home"> Blog </a></li>
+							<li><a href="#home"> YouTube </a></li>
+							<li><a href="#home"> Instagram </a></li>
+						</ul>					
+					</div>				
+				</div>				
+			</div>
+		</script>
+		
+		<!-- TEMPLATE SIDEBAR  -->
+		<script type="text/template" id="tpl_sidebar_section">
+				<div class="jumbotron">
+					<h4>Most Recommended</h4>
+					<ul class="most-recommended">
+						<% _.each(JsonData, function(comic){ %>
+						<li><a href="comic/<%= comic.id %>"> <%=comic.title %> </a></li>
+						<% }); %>
+					</ul>
+					<hr/>
+				</div>
+	
+		</script>
+		
+		<!-- TEMPLATE LOGIN -->
+		<script type="text/template" id="tpl_login">
+			<div class="panel panel-default" style="width: 300px; margin: auto;">
+				<div class="panel-heading" style="overflow: hidden;">
+					<h4 class="login-title">LOGIN</h4>
+					<div style="float: right;">
+						<img class="comic-icon" style="margin: 0 30px 0 30px;"src="img/comic_icon.jpg" align="absmiddle" />
 					</div>
 				</div>
-			</div>	
+				<div class="panel-body">
 
+					<div class="form-group">
+				    	<label for="username_input">Username</label>
+				    	<input type="text" class="form-control" id="username_input" placeholder="Enter username">
+				  	</div>
+				  	<div class="form-group">
+				    	<label for="pswd_input">Password</label>
+				    	<input type="password" class="form-control" id="pswd_input" placeholder="Enter password">
+				  	</div>
+				  	<button type="submit" class="btn btn-default" id="btn-signin">Log in</button>
+				  	<button type="button" class="btn btn-default" id="btn-register"> Register</button>
+				  	<p> if you don't have an account, please just create one</p>
+				</div>
+			</div>
+		</script>
+		
+		<!-- TEMPLATE REGISTER -->
+		<script type="text/template" id="tpl_register">
+			<div class="panel panel-default" style="width: 300px; margin: auto;">
+				<div class="panel-heading" style="overflow: hidden;">
+					
+					<h4 class="register-title" >CREATE USER</h4>
+					<div style="float: right;">
+						<img class="comic-icon" style="margin: 0 30px 0 30px;"src="img/comic_icon.jpg" align="absmiddle" />
+					</div>
+				</div>
+				<div class="panel-body">
+					 <div class="form-group">
+					    <label for="fullname_input">Full Name</label>
+					    <input type="text" class="form-control" id="fullname_input" placeholder="Enter full name">
+					 </div>
+					 <div class="form-group">
+					    <label for="email_input"> Email </label>
+					    <input type="email" class="form-control" id="email_input" placeholder="Enter email">
+					 </div>
+					 <div class="form-group">
+					    <label for="address_input"> Address </label>
+					    <input type="text" class="form-control" id="address_input" placeholder="Enter Address">
+					 </div>							 
+					 <div class="form-group">
+					    <label for="username_input">Username</label>
+					    <input type="text" class="form-control" id="username_input" placeholder="Enter username">
+					 </div>
+					 <div class="form-group">
+					    <label for="pswd_input">Password</label>
+					    <input type="password" class="form-control" id="pswd_input" placeholder="Enter password">
+					 </div>
+					 <button type="button"class="btn btn-default" id="btn-register"> create account </button>
+					 <button type="button" class="btn btn-default" id="btn-cancel"> cancel </button>
+					 <p class="text-danger hidden" > there's something miss </p>
+				</div>
+			</div>
+		</script>
+		
+		<!-- TEMPLATE HOME GUEST USER -->
+		<script type="text/template" id="tpl_home">
+			<div class="jumbotron">
+				<h1>Hello, and welcome to COMICS!</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+				sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+				 nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+				 voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+				 cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			</div>
 		</script>
 		
 		<!-- TEMPLATE USER PROFILE  -->
@@ -159,31 +219,79 @@
 		            <div class="col-sm-12">
 		                <div class="col-xs-12 col-sm-8">
 		                    <h2>Profile</h2>
+		                    <p><strong>Full name: </strong>  <%= guest.fullname %>. </p>
+		                    <p><strong>Email: </strong>  <%= guest.email %>. </p>
+		                    <p><strong>Address: </strong>  <%= guest.address %>. </p>
 		                    <p><strong>Username: </strong>  <%= guest.username %>. </p>
 		                </div>
 		                <div class="col-xs-12 col-sm-4 text-center">
                     <figure>
-                        <img src="http://www.localcrimenews.com/wp-content/uploads/2013/07/default-user-icon-profile.png" alt="" class="img-circle img-responsive">
+                        <img src="img/default-user-icon-profile.png" alt="" class="img-circle img-responsive">
                     </figure>
 		            </div>
 		          </div>
 		        </div>
 			</div>
 		</script>
+		
+		<!-- TEMPLATE LIST OF COMICS -->
+		<script type="text/template" id="list_comics">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Creator</th>
+						<th>Edition</th>
+						<th>Avialable</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% _.each(jsonComics, function(comic){ %> 
+					
+					<tr>
+						<td> <%= comic.title %> </td>
+						<td> <%= comic.creator %> </td>
+						<td> <%= comic.edition %> </td>
+						<td> <%= comic.available %> </td>
+					</tr>
+					<% }) %>
+				</tbody>
+			</table>
+		</script>
+		<script type="text/template" id="comic_detail">
+			<div class="jumbotron">
+				 <div class="cover">
+                 	<img src="img/covers/<%= comic.cover %>" alt="" class="img-rounded img-responsive">
+                 </div>
+		    	 <div class="profile">
+		            <div class="col-sm-12">
+		                <div class="col-xs-12 col-sm-8">
+		                    <p><strong>Title: </strong>  <%= comic.title %>. </p>
+		                    <p><strong>Creator: </strong>  <%= comic.creater %>. </p>
+		                    <p><strong>Edition: </strong>  <%= comic.edition %>. </p>
+		                    <p><strong>Genre: </strong>  <%= comic.genre %>. </p>
+		                    <p><strong>Details:</strong></p>
+		                    <p><%= comic.detail %></p>
+		                </div>
+<!--		                	<div class="col-xs-12 col-sm-4 text-center">
+		          </div> -->
+		          	</div>
+				</div>
+		</script>
 		<!-- TEMPLATE AMIND PAGE -->
-		<script type="text/template" id="tpl_admin">
+<!--		<script type="text/template" id="tpl_admin">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="page-header"></div>
 					<div class="navbar navbar-default" role="navigation">
 				        <div class="container-fluid">
 				          <div class="navbar-header">
-<!--				            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+			***	            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
 				              <span class="sr-only">Toggle navigation</span>
 				              <span class="icon-bar"></span>
 				              <span class="icon-bar"></span>
 				              <span class="icon-bar"></span>
-				       </button>   -->
+				    </button>   ***
 				            <a class="navbar-brand" href="#admin-page"><img src="img/comic_icon.jpg" class="comic-icon"/></a>
 				          </div>
 				          <div class="navbar-collapse collapse">
@@ -203,22 +311,15 @@
 					                </ul>
 				           	 	</li>
 				            </ul>
-				          </div><!--/.nav-collapse -->
-				        </div><!--/.container-fluid -->
+				          </div><!--/.nav-collapse 
+				        </div><!--/.container-fluid 
 			      </div>
 				</div>
 			</div>	
-			<h1> this is the admin page </h1>
-			<div class="container" id="admin_content"> </div>
-		</script>
+		</script> -->
 		
-		<!-- TEMPLATE FOOTER SECTION  -->
-		<script type="text/template" id="footer_section">
-			<h1> I am the footer </h1>
-	
-		</script>
-		
-		
+
+		<!-- SCRIPT  -->
 		<!-- libraries -->
 		<script src="js/lib/jquery-1.11.1.min.js"></script>
 		<script src="js/lib/bootstrap.min.js"></script>
@@ -226,7 +327,7 @@
 		<script src="js/lib/underscore-min.js"></script>
 		<script src="js/lib/backbone-min.js"></script>
 		<script src="js/lib/backbone.localStorage.js"></script>
-		
+
 		<!-- app namespace -->
 		<script src="js/app.js"></script>
 		
@@ -242,14 +343,19 @@
 		<script src="js/collections/comic_collection.js"></script>
 		<script src="js/collections/loan_collection.js"></script>
 		
+		<!-- partial section -->
+		<script src="js/views/partials/sidebar_view.js"></script>
+		<script src="js/views/partials/navbar_view.js"></script>
+		<script src="js/views/partials/footer_view.js"></script>
+		<script src="js/views/partials/sidebar_view.js"></script>
 		
 		<!-- views -->
 		<script src="js/views/auth_view.js"></script>
 		<script src="js/views/home_view.js"></script>
 		<script src="js/views/admin_view.js"></script>
-		<!-- partial section -->
-		<script src="js/views/partials/navbar_view.js"></script>
-		<script src="js/views/footer_view.js"></script>
+		<script src="js/views/comic_view.js"></script>
+
+
 		<!-- routers -->
 		<script src="js/routers/routers.js"></script>
 		
