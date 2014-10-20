@@ -84,3 +84,4 @@ app.SessionCollection = Backbone.Collection.extend({
 });
 
 app.session_collection = new app.SessionCollection();
+app.session_collection.fetch();

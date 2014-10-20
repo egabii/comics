@@ -21,8 +21,7 @@ app.UserCollection = Backbone.Collection.extend({
 		pswd: 'bazinga',
 		admin: true
 		};
-		this.create(admin);
-		//this.fetch();
+		this.createNewUser(admin);
 	},
 
 	createNewUser: function (data)
@@ -41,32 +40,28 @@ app.UserCollection = Backbone.Collection.extend({
 			 */
 
 			var user_auth = regexp.exec(data.username); // return an array
-			console.log(user_auth,'result of regex');
+			//console.log(user_auth,'result of regex');
 			var pswd_auth = regexp_pswd.exec(data.pswd); // return an array
-			var lastOne = this.length == 0 ? 0: (this.length - 1); // assign id !
+			// var lastOne = this.length == 0 ? 0: (this.length - 1); // assign id !
 			
 			if (user_auth[0] === data.username && data.pswd === pswd_auth[0]){
-				data.id = lastOne + 1;
+				data.id = this.nextOrder();
 				var user = new app.UserModel(data);
-				this.push(user);
+				this.add(user);
 				user.save();
 				this.fetch();
 				return true;
 			}
 			return false;
 		}else{
-			console.log(data,' ya existe');
+			console.log(data,' already exist');
 		}
 	},
 	
 	ifExist: function (data)
 	{
 		var result = this.findWhere(data);
-		/*var result = this.find(function (model){ 
-			return model.get('username') === data.username; 
-		}); */
-		
-		if (result != undefined){
+		if (result){
 			return true;
 		}
 		return false;
@@ -76,15 +71,28 @@ app.UserCollection = Backbone.Collection.extend({
 	{
 		if (this.ifExist(data)) {
 			this.remove(user);
+			this.fetch();
 			
 		}else{
 			console.log('error this user doesn\'t exist');
 		}
 	},
 	
-	editProfile: function(){ console.log('edit profile'); },
+	editProfile: function ()
+	{ 
+		console.log('edit profile'); 
+	},
 	
-	comparator: 'username'
+	comparator: function (user)
+	{
+		return user.get('username');
+	},
+	nextOrder: function (){
+		if (!this.length){
+			return 1;
+		}
+		return this.last().get('id') + 1;
+	}
 	
 });
 

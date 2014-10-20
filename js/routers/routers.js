@@ -11,7 +11,8 @@ app.Routers = Backbone.Router.extend({
 		''          : 'login',
 		'register'  : 'register',
 		'home'      : 'home',
-		'admin-page': 'admin'			
+		'admin-page': 'admin',
+		'logout'	: 'logout'			
 	},
 	
 	login: function ()
@@ -28,6 +29,9 @@ app.Routers = Backbone.Router.extend({
 	
     	if (login){
     		app.home_view.render();
+    		app.navbar_guest_view.render();	
+    	}else{
+    		location.hash = '';
     	}
      },
 	admin: function ()
@@ -36,8 +40,14 @@ app.Routers = Backbone.Router.extend({
 		console.log(login);
 		if (login){
 			app.admin_view.render();	
+		}else{
+			location.hash = '';
 		}
 		
+	},
+	logout: function () 
+	{ 
+		app.auth_view.logout(); 
 	}
 	
 });

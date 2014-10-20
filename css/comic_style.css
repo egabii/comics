@@ -9,3 +9,14 @@ div.page-header {
 
 
 .comic-icon { height: 40px; }
+
+.profile {
+    min-height: 355px;
+    display: inline-block;
+}
+
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}

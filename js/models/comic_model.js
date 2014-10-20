@@ -12,11 +12,14 @@ app.comicModel = Backbone.Model.extend({
 	
 	defaults: {
 		id:0,
-		creator:'', // should be a full name
 		title: '',
-		date: '', // 1st edition
+		creator:'',
 		edition: '', // collections !???
-		description: '',
-		img: '' // should be a path
+		cover: '', // should be a path
+		detail: '',
+		genre:'',
+		recommended:0,
+		searched:0,
+		qualification:0,
 	}
 });

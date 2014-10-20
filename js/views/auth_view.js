@@ -15,7 +15,6 @@ app.AuthView = Backbone.View.extend({
 	events: {
 		'click #btn-signin'   : 'login',
 		'click #btn-register' : 'register',
-		'click #btn-logout'   : 'logout'
 	},
 	
 	initialize: function ()
@@ -48,6 +47,7 @@ app.AuthView = Backbone.View.extend({
 			}else{
 				console.log("your're a guest");
 				location.hash = '#home';	
+				app.footer_view.render();
 			}
 			
 		}else{
@@ -77,9 +77,13 @@ app.RegisterView = Backbone.View.extend({
 		'click #btn-cancel'	  :	'notCreateAccount'
 	},
 	
-	initialize: function (){ this.render(); },
+	initialize: function ()
+	{ 
+		this.render(); 
+	},
 	
-	render: function (){ 
+	render: function ()
+	{ 
 		this.$el.html(this.template); 
 		return this;	
 	},
@@ -97,14 +101,17 @@ app.RegisterView = Backbone.View.extend({
 			console.log(result, 'resultado de la registracion');
 			console.log(app.user_collection.models,' models in user_collection');
 			if (result) {
-				location.hash = '#' ;	
+				location.hash = '' ;	
 			}	
 		}else{
 			$('.text-danger').removeClass('hidden');
 		}
 	},
 	
-	notCreateAccount: function (){ location.hash = '#'; }
+	notCreateAccount: function ()
+	{ 
+		location.hash = '#'; 
+	}
 	
 });
 

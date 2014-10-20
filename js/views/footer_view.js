@@ -1,21 +1,10 @@
 
 
-/*
- * HOME VIEW
- */
 
-
-/*
- * var compiled = _.template("hello: <%= name %>");
-compiled({name: 'moe'});
-=> "hello: moe" 
- */
-
-
-app.homeView = Backbone.View.extend({
-	
-	el: '#app_content',
-	template: $('#tpl_home').html(),
+app.footerView = Backbone.View.extend({
+	el: '#footer_content',
+	tagName:'footer',
+	template: $('#footer_section').html(),
     render: function () {
         var tmpl = _.template(this.template); //tmpl is a function that takes a JSON object and returns html
 
@@ -24,7 +13,4 @@ app.homeView = Backbone.View.extend({
     }
 });
 
-
-
-app.home_view = new app.homeView();
-
+app.footer_view = new app.footerView();
