@@ -17,13 +17,14 @@ app.AuthView = Backbone.View.extend({
 		'click #btn-register' : 'register',
 	},
 	
-	initialize: function ()
+/*	initialize: function ()
 	{ 
 		this.render(); 
 	},
-	
+*/	
 	render: function ()
 	{ 
+		$('#app_content').removeClass('col-md-8');
 		this.$el.html(this.template); 
 	}, 
 	
@@ -35,24 +36,32 @@ app.AuthView = Backbone.View.extend({
 			username: $('#username_input').val(),
 			pswd: $('#pswd_input').val()
 		};
-		var login = app.session_collection.login(user);
-		console.log(login);
-		
-		if (login){
-			this.userLogueado = app.user_collection.findWhere(user);
-			
-			if (this.userLogueado.get('admin')){
-				console.log("you're an admin");
-				location.hash = '#admin-page';
+		var login = app.session_collection.login(user);	
+		if (user.username && user.pswd){
+			if (login){
+				this.userLogueado = app.user_collection.findWhere(user);
+				
+				if (this.userLogueado.get('admin')){
+					console.log("you're an admin");
+					location.hash = '#admin-page';
+				}else{
+					console.log("your're a guest");
+					location.hash = '#home';	
+				}
+				
 			}else{
-				console.log("your're a guest");
-				location.hash = '#home';	
-				app.footer_view.render();
+				console.log('not login!! ');
+			}			
+		}else{
+			if ($('#username_input').val()){
+				$('#username_input').addClass('has-error');
 			}
 			
-		}else{
-			console.log('not login!! ');
+			if ($('#pswd_input').val()){
+				$('#pswd_input').addClass('has-error');
+			}
 		}
+
 	},
 	
 	register: function (){ location.hash = '#register'; },
@@ -60,8 +69,9 @@ app.AuthView = Backbone.View.extend({
 	logout: function()
 	{
 		var logout = app.session_collection.logout();
+		console.log(logout, 'this is the logout method from auth_view object');
 		if (logout){
-			location.hash = '';
+			return true;
 		}
 	}
 });
@@ -98,7 +108,7 @@ app.RegisterView = Backbone.View.extend({
 				username: $('#username_input').val(),
 				pswd: $('#pswd_input').val()
 			};
-		console.log(this.validate(user));
+		// console.log(this.validate(user));
 		if (this.validate(user)){
 
 			var result = app.user_collection.createNewUser(user);

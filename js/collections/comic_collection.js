@@ -20,6 +20,15 @@ app.comicCollection = Backbone.Collection.extend({
 			return b.recommended - a.recommended;
 		}).slice(0,5);
 	},
+	
+	most_searched: function ()
+	{
+		var comics = this.toJSON(); // array of models
+		
+		return comics.sort(function(a,b){
+			return b.searched - a.searched;
+		}).slice(0,5);		
+	},
 	nextOrder: function()
 	{
 		if (!this.length){
@@ -42,20 +51,24 @@ app.comic_collection.create({
 	id: app.comic_collection.nextOrder(), 
 	title:'Batman Dectective Vol 2-22',
 	creator:'lorem ipsum',
+	edition:'fallen edition',
 	cover: 'img/covers/Batman_Detective_Comics_Vol_2_22.jpg',
 	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',
 	genre:'police',
-	recommended:2
+	recommended:2,
+	searched: 300
 });
 
 app.comic_collection.create({
 	id: app.comic_collection.nextOrder(), 
 	title:'Daredevil',
 	creator:'universal comics',
+	edition:'daredevil edition',
 	cover: 'img/covers/daredevil_thManWithOutFear.jpg',
 	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',
 	genre:'action',
-	recommended:20
+	recommended:20,
+	searched: 1
 });
 
 app.comic_collection.create({
@@ -66,27 +79,33 @@ app.comic_collection.create({
 	cover: 'img/covers/superman_vs_voosterGold.jpg',
 	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',
 	genre:'superheroe',
-	recommended:12
+	recommended:12,
+	searched: 50
 });
 
 app.comic_collection.create({
 	id: app.comic_collection.nextOrder(), 
 	title:'Thor',
 	creator:'marvel comics',
+	edition: 'thor edition',
 	cover: 'img/covers/Thor.jpg',
 	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',
 	genre:'superheroe',
-	recommended:100
+	recommended:100,
+	available: false,
+	searched: 120
 });
 
 app.comic_collection.create({
 	id: app.comic_collection.nextOrder(), 
 	title:'Thor journey into mystery',
 	creator: 'marvel comics',
+	edition:'first edition',
 	cover: 'img/covers/thor_journey_into_mystery.jpg',
 	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',
 	genre:'superheroe',
-	recommended:12
+	recommended:12,
+	searched: 15
 });
 
 app.comic_collection.create({
@@ -97,7 +116,7 @@ app.comic_collection.create({
 	cover: 'img/covers/Batman_Detective_Comics_Vol_2_2.jpg',
 	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',
 	genre:'police',
-	recommended:50
+	recommended:50,
 });
 
 app.comic_collection.create({
@@ -108,7 +127,9 @@ app.comic_collection.create({
 	cover: 'img/covers/iron_man_custom_edition.jpg',
 	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',	
 	genre:'science-fiction',
-	recommended:124
+	recommended:124,
+	searched: 205,
+	available: false
 });
 
 app.comic_collection.create({
@@ -119,7 +140,8 @@ app.comic_collection.create({
 	cover: 'img/covers/spawn_comic.jpg',
 	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',
 	genre:'thriller',
-	recommended: 60
+	recommended: 60,
+	searched: 40
 });
 
 

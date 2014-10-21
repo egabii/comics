@@ -30,7 +30,7 @@ app.SessionCollection = Backbone.Collection.extend({
 				session.save();
 				this.fetch();
 			}
-			else
+/*			else
 			{
 				session.set({
 					session  : true,
@@ -38,7 +38,7 @@ app.SessionCollection = Backbone.Collection.extend({
 				});
 				session.save();
 				this.fetch();
-			}
+			} */
 
 			return true;
 		}
@@ -69,9 +69,8 @@ app.SessionCollection = Backbone.Collection.extend({
 		console.log(session);
 		if (session.get('session')){
 			// CHANGE STATUS TO FALSE
-			var aux = this.remove(session);
-			aux.destroy();
-			this.fetch();
+			session.destroy();
+		//	this.fetch();
 			return true;
 		}
 		return false;

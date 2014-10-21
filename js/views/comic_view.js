@@ -5,6 +5,10 @@ app.comicView = Backbone.View.extend({
 	
 	el: '#app_content',
 	
+/*	events: {
+		'click .btn-comic-detail' : renderComicDetail
+	},¨*/   
+	
 	initialize: function()
 	{
 		// get all the comics from local storage
@@ -21,15 +25,19 @@ app.comicView = Backbone.View.extend({
 	renderMostRecommended: function ()
 	{
 		var most_recommended = app.comic_collection.most_recommended();
-		var sidebar = new app.sidebarView();
-		sidebar.render(most_recommended);
+		app.sidebar_view = new app.sidebarView();
+		app.sidebar_view.render(most_recommended);
 	},
 	
-	renderComicDetail: function (id)
-	{
+	renderComicDetail: function (id,evt)
+	{	
+		if(evt) evt.preventDefault();
+		
 		var comic = app.comic_collection.get(id);
-		var comic_detail_view = app.comicDetailView({ model: comic.toJSON() });
-	}
+		var comic_detail_view = app.comicDetailView();
+		comic_detail_view.render(comic.toJSON());
+	},
+	
 });
 
 
@@ -57,7 +65,7 @@ app.comicDetailView = Backbone.View.extend({
 	render: function (comic)
 	{
 		$('#app_content').addClass('col-md-8'); 
-		var tpl = _.template(this.template, this.model );
+		var tpl = _.template(this.template, {jsonComic: comic } );
 		this.$el.html( tpl );
 		return this;
 	}

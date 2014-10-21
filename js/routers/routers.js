@@ -35,6 +35,7 @@ app.Routers = Backbone.Router.extend({
     		app.home_view.render();
     		app.navbar_guest_view.render(app.session_collection.get(0).get('username'));
     		app.comic_view.renderMostRecommended();
+
     		app.footer_view.render();
     	}else{
     		location.hash = '';
@@ -51,20 +52,24 @@ app.Routers = Backbone.Router.extend({
 		}
 		
 	},
-/*	comicDetail: function()
+	comicDetail: function(id)
 	{
 		var login = app.session_collection.check_login();
 		if(login){
-			app.comic_view.renderComic();
+			app.comic_view.renderComicDetail(id);
 			app.navbar_guest_view.render(app.session_collection.get(0).get('username'));
     		app.comic_view.renderMostRecommended();
     		app.footer_view.render();
 		}
-	}, */
+	},  
 	logout: function () 
 	{ 
-		app.auth_view.logout();
-	
+		if (app.auth_view.logout()){
+			location.hash = '';
+			app.navbar_guest_view.remove();
+			app.footer_view.remove();
+			app.sidebar_view.remove();
+		}
 	},
 	
 	admin: function ()

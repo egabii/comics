@@ -1,19 +1,28 @@
 
 
 /*
- * Login and register
+ * LOGIN AND REGISTER VIEW
  */
 .login-title, .register-title{ 
 	font-weight: bold; 
 	float:left	
 }
 
+/*
+ *  HOME VIEW
+ */
 div.page-header {
 	background-image: url('http://local.comics/img/covers_.jpg');
 	height: 300px;
 	margin: 15px 0 20px;
 }
 
+.navbar-collapse.collapse, .input-group, .nav.navbar-nav.navbar-right{ display: inline-block; }
+
+.input-group-btn{
+	width: 80px;
+}
+.input-group { margin-top: 10px; }
 
 .comic-icon { height: 40px; }
 
@@ -28,22 +37,37 @@ div.page-header {
     margin: 0 auto;
 }
 
-#footer_content { background-color: #eee; }
+/*
+ *  COMIC TABLE
+ */
+.table.table-hover tr:hover { color: #000000; }
+
+
+/*
+ * SIDEBAR SECTION
+ */
+.most-recommended li, .most-searched li{ list-style: none; text-align:left }
+.sidebar h4 { text-align: center; }
+
+/*
+ *  FOOTER SECTION
+ */
+#footer_content .col-md-12 { background-color: #eee; }
 
 .box {
 	display: inline-block;
-	width: 30%;
+	width: 33%;
 }
 
 .box.navigation { 
 	float: left; 
-	border-right: 1px solid #000000;
 	text-align: center;
 }
 
 .box.contact-box { 	
-	border-right: 1px solid #000000; 
+	border-right: 1px solid #8BA68E; 
 	text-align: center;
+	border-left: 1px solid #8BA68E;
 }
 
 .box.social_network { 
@@ -51,4 +75,79 @@ div.page-header {
 	text-align: center;
 }
 
-.box li { list-style: none; }
+.box li { list-style: none; display: inline-block; }
+
+.box ul { padding-left: 0; }
+
+/*
+ *  SOCIAL NETWORK
+ */
+.box.social_network ul li {
+	width: 70px;
+	height: 55px;
+}
+
+.box.social_network .fbk {
+	display: block;
+	width: 65px;
+	height: 65px;
+	background-image: url('/img/sn_icon/social_icons_sprite.png');
+	background-position: 705px 0px;
+}
+
+.box.social_network .fbk:hover {
+	background-image: url('/img/sn_icon/social_icons_sprite.png');
+	background-position: 705px -65px;
+}
+
+.box.social_network .twt {
+	display: block;
+	width: 65px;
+	height: 65px;
+	background-image: url('/img/sn_icon/social_icons_sprite.png');
+	background-position: 320px 0px;
+}
+
+.box.social_network .twt:hover {
+	background-image: url('/img/sn_icon/social_icons_sprite.png');
+	background-position: 320px -65px;
+}
+
+.box.social_network .lkn {
+	display: block;
+	width: 65px;
+	height: 65px;
+	background-image: url('/img/sn_icon/social_icons_sprite.png');
+	background-position: 128px 0px;
+}
+
+.box.social_network .lkn:hover{
+	background-image: url('/img/sn_icon/social_icons_sprite.png');
+	background-position: 128px -65px;	
+}
+.box.social_network .youtube {
+	display: block;
+	width: 65px;
+	height: 65px;
+	background-image: url('/img/sn_icon/social_icons_sprite.png');
+	background-position: 575px 0px; 
+}
+
+.box.social_network .youtube:hover {
+	background-image: url('/img/sn_icon/social_icons_sprite.png');
+	background-position: 575px -65px; 
+}
+
+.box.social_network .gplus {
+	display: block;
+	width: 65px;
+	height: 65px;
+	background-image: url('/img/sn_icon/social_icons_sprite.png');
+	background-position: 448px 0px;
+}
+
+.box.social_network .gplus:hover {
+	background-image: url('/img/sn_icon/social_icons_sprite.png');
+	background-position: 448px -65px;
+}
+

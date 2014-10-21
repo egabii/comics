@@ -8,6 +8,7 @@
 
     	<!-- Bootstrap -->
     	<link href="css/contrib/bootstrap.min.css" rel="stylesheet">
+    	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     	<link  href="css/comic_style.css" type="text/css" rel="stylesheet"/>
     	
 	    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -23,10 +24,10 @@
 		<header class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<div class="page-header">&nbsp;</div>	
+					<div class="page-header"> &nbsp; </div>	
 				</div>				
 			</div>
-		</header>
+		</header>	
 		<div id="app_navbar" class="container">
 			
 		</div>
@@ -49,28 +50,52 @@
 		<!--  TEMPLATES -->
 		<!-- TEMPLATE NAVBAR SECTION -->
 		<script type="text/template" id="tpl_navbar_partial">
+		
 			<div class="row">
 				<div class="col-md-12">	
 					<div class="navbar navbar-default" role="navigation">
 				        <div class="container-fluid">
 				          <div class="navbar-header">
-<!--				            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-				              <span class="sr-only">Toggle navigation</span>
-				              <span class="icon-bar"></span>
-				              <span class="icon-bar"></span>
-				              <span class="icon-bar"></span>
-				       </button>   -->
 				            <a class="navbar-brand" href="#home"><img src="img/comic_icon.jpg" class="comic-icon"/></a>
 				          </div>
 				          <div class="navbar-collapse collapse">
 				            <ul class="nav navbar-nav">
-				              <li><a href="#comics"> Comics </a></li>
-				              <li><a href="#home"> Loans </a></li>
+				            	<li><a href="#home"> Home </a></li>
+				              	<li><a href="#comics"> Comics </a></li>
+				              	<li><a href="#home"> Characters </a></li>
+				              	<li><a href="#home"> News </a></li>
+				            	<li class="dropdown">
+					                <a href="#home" class="dropdown-toggle" data-toggle="dropdown">
+					                	Genre <span class="caret"></span>
+					                </a>
+					                <ul class="dropdown-menu" role="menu">
+					                  <li><a href="#home"> Science Fiction</a></li>
+					                  <li><a href = "#home"> Police </a></li>
+					                  <li><a href = "#home"> Thriller </a></li>
+					                   <li><a href = "#home"> Adventure </a></li>
+					                </ul>
+				           	 	</li>
 				            </ul>
-				            
+							<div class="input-group">
+							      <input type="text" class="form-control">
+							      <div class="input-group-btn">
+							        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+							        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+							          <li><a href=""> by all</a></li>
+							          <li><a href="">by name</a></li>
+							          <li><a href="">by loans</a></li>
+							          <li><a href="">by recommended</a></li>
+							          <li><a href="">by creator</a></li>
+							          <li class="divider"></li>
+							          <li><a href="">Separated link</a></li>
+							        </ul>
+							      </div><!-- /btn-group -->
+							</div><!-- /input-group -->				            
 				            <ul class="nav navbar-nav navbar-right">
 				            	<li class="dropdown">
-					                <a href="#home" class="dropdown-toggle" data-toggle="dropdown"><%= guest %> <span class="caret"></span></a>
+					                <a href="#home" class="dropdown-toggle" data-toggle="dropdown">
+					                	<%= guest %> <span class="caret"></span>
+					                </a>
 					                <ul class="dropdown-menu" role="menu">
 					                  <li ><a href="#logout">logout</a>  </li>
 					                  <li><a href = "#user/profile">profile</a></li>
@@ -94,8 +119,10 @@
 						<h4> PAGES </h4>
 						<ul>
 							<li><a href="#home"> Home </a></li>
-							<li><a href="#home"> Comics </a></li>
-							<li><a href="#home"> Loans </a></li>
+							<li><a href="#comics"> Comics </a></li>
+				            <li><a href="#home"> Characters </a></li>
+				            <li><a href="#home"> News </a></li>
+				            <li><a href="#home"> Genre </a></li>
 						</ul>
 					</div>
 					<div class=" box contact-box">
@@ -109,11 +136,11 @@
 					<div class=" box social_network">
 						<h4> FOLLOW ME </h4>
 						<ul >
-							<li><a href="#home"> Facebook </a></li>
-							<li><a href="#home"> Twitter </a></li>
-							<li><a href="#home"> Blog </a></li>
-							<li><a href="#home"> YouTube </a></li>
-							<li><a href="#home"> Instagram </a></li>
+							<li><a class="fbk" href="#home">  </a></li>
+							<li><a class="twt" href="#home"> </a></li>
+							<li><a class="lkn" href="#home"> </a></li>
+							<li><a class="youtube" href="#home"></a></li>
+							<li><a class="gplus" href="#home"> </a></li>
 						</ul>					
 					</div>				
 				</div>				
@@ -122,14 +149,15 @@
 		
 		<!-- TEMPLATE SIDEBAR  -->
 		<script type="text/template" id="tpl_sidebar_section">
-				<div class="jumbotron">
-					<h4>Most Recommended</h4>
+				<div class="jumbotron sidebar">
+					<h4 class="dropdown-custom"> Most Recommended <span class="glyphicon glyphicon-thumbs-up"> </span>  </h4>
 					<ul class="most-recommended">
 						<% _.each(JsonData, function(comic){ %>
 						<li><a href="comic/<%= comic.id %>"> <%=comic.title %> </a></li>
 						<% }); %>
 					</ul>
-					<hr/>
+					<hr style="border-color: #000000; "/>
+
 				</div>
 	
 		</script>
@@ -162,7 +190,7 @@
 		
 		<!-- TEMPLATE REGISTER -->
 		<script type="text/template" id="tpl_register">
-			<div class="panel panel-default" style="width: 300px; margin: auto;">
+			<div class="panel panel-default" style="width: 300px; margin: 0 auto;">
 				<div class="panel-heading" style="overflow: hidden;">
 					
 					<h4 class="register-title" >CREATE USER</h4>
@@ -226,7 +254,7 @@
 		                </div>
 		                <div class="col-xs-12 col-sm-4 text-center">
                     <figure>
-                        <img src="img/default-user-icon-profile.png" alt="" class="img-circle img-responsive">
+                        <img src="img/default-user-icon-profile.png" class="img-circle img-responsive">
                     </figure>
 		            </div>
 		          </div>
@@ -236,28 +264,43 @@
 		
 		<!-- TEMPLATE LIST OF COMICS -->
 		<script type="text/template" id="list_comics">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>Title</th>
-						<th>Creator</th>
-						<th>Edition</th>
-						<th>Avialable</th>
-					</tr>
-				</thead>
-				<tbody>
-					<% _.each(jsonComics, function(comic){ %> 
-					
-					<tr>
-						<td> <%= comic.title %> </td>
-						<td> <%= comic.creator %> </td>
-						<td> <%= comic.edition %> </td>
-						<td> <%= comic.available %> </td>
-					</tr>
-					<% }) %>
-				</tbody>
-			</table>
+			<div class="panel panel-default">
+  				<!-- Default panel contents -->
+  				<div class="panel-heading"> Comics </div>
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Title</th>
+								<th>Creator</th>
+								<th>Edition</th>
+								<th>Avialable</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% _.each(jsonComics, function(comic){ %> 
+								
+								<% if (comic.available) { %>
+									<tr class="btn-comic-detail">	
+										<td> <%= comic.title %> </td>
+										<td> <%= comic.creator %> </td>
+										<td> <%= comic.edition %> </td>
+										<td > available </td>
+									</tr>						
+								<% }else{ %>
+									<tr class="bg-danger btn-comic-detail">
+										<td> <%= comic.title %> </td>
+										<td> <%= comic.creator %> </td>
+										<td> <%= comic.edition %> </td>							
+										<td> not available </td>
+									</tr>
+								<% } %>
+							<% }) %>
+						</tbody>
+					</table>
+			</div>
 		</script>
+		
+		<!-- TEMPLATE COMIC DETAILS -->
 		<script type="text/template" id="comic_detail">
 			<div class="jumbotron">
 				 <div class="cover">
@@ -278,46 +321,6 @@
 		          	</div>
 				</div>
 		</script>
-		<!-- TEMPLATE AMIND PAGE -->
-<!--		<script type="text/template" id="tpl_admin">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="page-header"></div>
-					<div class="navbar navbar-default" role="navigation">
-				        <div class="container-fluid">
-				          <div class="navbar-header">
-			***	            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-				              <span class="sr-only">Toggle navigation</span>
-				              <span class="icon-bar"></span>
-				              <span class="icon-bar"></span>
-				              <span class="icon-bar"></span>
-				    </button>   ***
-				            <a class="navbar-brand" href="#admin-page"><img src="img/comic_icon.jpg" class="comic-icon"/></a>
-				          </div>
-				          <div class="navbar-collapse collapse">
-				            <ul class="nav navbar-nav">
-				              <li><a href="#admin-page"> Comics </a></li>
-				              <li class="active"><a href="#admin-page"> Users Guest </a></li>
-				              <li><a href="#admin-page"> Loans </a></li>
-				            </ul>
-				            
-				            <ul class="nav navbar-nav navbar-right">
-				            	<li class="dropdown">
-					                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
-					                <ul class="dropdown-menu" role="menu">
-					                  <li id="btn-logout"><a>logout</a>  </li>
-					                  <li><a href="#admin-page">profile</a></li>
-
-					                </ul>
-				           	 	</li>
-				            </ul>
-				          </div><!--/.nav-collapse 
-				        </div><!--/.container-fluid 
-			      </div>
-				</div>
-			</div>	
-		</script> -->
-		
 
 		<!-- SCRIPT  -->
 		<!-- libraries -->
