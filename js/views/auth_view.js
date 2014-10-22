@@ -17,11 +17,6 @@ app.AuthView = Backbone.View.extend({
 		'click #btn-register' : 'register',
 	},
 	
-/*	initialize: function ()
-	{ 
-		this.render(); 
-	},
-*/	
 	render: function ()
 	{ 
 		$('#app_content').removeClass('col-md-8');
@@ -37,6 +32,7 @@ app.AuthView = Backbone.View.extend({
 			pswd: $('#pswd_input').val()
 		};
 		var login = app.session_collection.login(user);	
+		console.log(user);
 		if (user.username && user.pswd){
 			if (login){
 				this.userLogueado = app.user_collection.findWhere(user);
@@ -53,25 +49,28 @@ app.AuthView = Backbone.View.extend({
 				console.log('not login!! ');
 			}			
 		}else{
-			if ($('#username_input').val()){
+			if (!$('#username_input').val()){
 				$('#username_input').addClass('has-error');
 			}
 			
-			if ($('#pswd_input').val()){
+			if (!$('#pswd_input').val()){
 				$('#pswd_input').addClass('has-error');
 			}
 		}
 
 	},
 	
-	register: function (){ location.hash = '#register'; },
+	register: function ()
+	{ 
+		location.hash = '#register';
+	},
 	
 	logout: function()
 	{
 		var logout = app.session_collection.logout();
 		console.log(logout, 'this is the logout method from auth_view object');
 		if (logout){
-			return true;
+			window.location.href = '';
 		}
 	}
 });
@@ -83,15 +82,10 @@ app.RegisterView = Backbone.View.extend({
 	template: _.template($('#tpl_register').html()),
 	
 	events: {
-		'click #btn-register' :	'createAccount',
+		'click #btn-create' :	'createAccount',
 		'click #btn-cancel'	  :	'notCreateAccount'
 	},
-	
-	initialize: function ()
-	{ 
-		this.render(); 
-	},
-	
+
 	render: function ()
 	{ 
 		this.$el.html(this.template); 
@@ -108,33 +102,34 @@ app.RegisterView = Backbone.View.extend({
 				username: $('#username_input').val(),
 				pswd: $('#pswd_input').val()
 			};
-		// console.log(this.validate(user));
-		if (this.validate(user)){
-
-			var result = app.user_collection.createNewUser(user);
-			console.log(result, 'resultado de la registracion');
-			console.log(app.user_collection.models,' models in user_collection');
-			if (result) {
-				location.hash = '#' ;	
-			}else{
-				$('.text-danger').removeClass('hidden');
-			}
+		//console.log(this.validate());
+		var result = app.user_collection.createNewUser(user);
+		console.log(result, 'resultado de la registracion');
+		console.log(app.user_collection.models,' models in user_collection');
+		if (result) {
+			window.location.href = '';	
 		}else{
 			$('.text-danger').removeClass('hidden');
 		}
+	/*	if (this.validate(user)){
+
+		}else{
+			$('.text-danger').removeClass('hidden');
+		} */
 	},
 	
-	validate: function (user)
+/*	validate: function (user)
 	{
-		if (user.fullname != '' && user.email != '' && user.address != '' && user.username != '' && user.pswd != ''){
+		if (user.username  && user.pswd){
 			return true;
 		}
 		return false;
-	},
+	}, */ 
 	
 	notCreateAccount: function ()
 	{ 
-		location.hash = '#'; 
+		window.location.href = ''; 
+		
 	}
 	
 });

@@ -29,10 +29,8 @@ app.comicView = Backbone.View.extend({
 		app.sidebar_view.render(most_recommended);
 	},
 	
-	renderComicDetail: function (id,evt)
+	renderComicDetail: function (id)
 	{	
-		if(evt) evt.preventDefault();
-		
 		var comic = app.comic_collection.get(id);
 		var comic_detail_view = app.comicDetailView();
 		comic_detail_view.render(comic.toJSON());

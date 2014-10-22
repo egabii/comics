@@ -53,6 +53,7 @@
 		
 			<div class="row">
 				<div class="col-md-12">	
+					<!-- site nav -->
 					<div class="navbar navbar-default" role="navigation">
 				        <div class="container-fluid">
 				          <div class="navbar-header">
@@ -76,29 +77,23 @@
 					                </ul>
 				           	 	</li>
 				            </ul>
-							<div class="input-group">
-							      <input type="text" class="form-control">
-							      <div class="input-group-btn">
-							        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
-							        <ul class="dropdown-menu dropdown-menu-right" role="menu">
-							          <li><a href=""> by all</a></li>
-							          <li><a href="">by name</a></li>
-							          <li><a href="">by loans</a></li>
-							          <li><a href="">by recommended</a></li>
-							          <li><a href="">by creator</a></li>
-							          <li class="divider"></li>
-							          <li><a href="">Separated link</a></li>
-							        </ul>
-							      </div><!-- /btn-group -->
-							</div><!-- /input-group -->				            
+				            <!-- search box  -->
+<!--							<div class="input-group">
+							  <input type="text" class="form-control">
+							  <span class="input-group-btn">
+								<button class="btn btn-default" type="button">Go!</button>
+							  </span>
+				</div>		-->
+							<!-- user nav -->	            
 				            <ul class="nav navbar-nav navbar-right">
 				            	<li class="dropdown">
 					                <a href="#home" class="dropdown-toggle" data-toggle="dropdown">
-					                	<%= guest %> <span class="caret"></span>
+					                	<span class="glyphicon glyphicon-user"></span>  <%= guest %> <span class="caret"></span>
 					                </a>
 					                <ul class="dropdown-menu" role="menu">
-					                  <li ><a href="#logout">logout</a>  </li>
-					                  <li><a href = "#user/profile">profile</a></li>
+					                  <li><a href = "#user/profile">Account</a></li>
+					                  <li><a href = "#user/profile">Profile</a></li>					                	
+					                  <li ><a href="#logout">Logout</a> </li>
 					                  <li><a href = "#home"></a></li>
 
 					                </ul>
@@ -153,7 +148,7 @@
 					<h4 class="dropdown-custom"> Most Recommended <span class="glyphicon glyphicon-thumbs-up"> </span>  </h4>
 					<ul class="most-recommended">
 						<% _.each(JsonData, function(comic){ %>
-						<li><a href="comic/<%= comic.id %>"> <%=comic.title %> </a></li>
+						<li><a href="#comics/<%= comic.id %>"> <%=comic.title %> </a></li>
 						<% }); %>
 					</ul>
 					<hr style="border-color: #000000; "/>
@@ -182,7 +177,7 @@
 				    	<input type="password" class="form-control" id="pswd_input" placeholder="Enter password">
 				  	</div>
 				  	<button type="submit" class="btn btn-default" id="btn-signin">Log in</button>
-				  	<button type="button" class="btn btn-default" id="btn-register"> Register</button>
+				  	<button type="button" class="btn btn-default" id="btn-register"> Register </button>
 				  	<p> if you don't have an account, please just create one</p>
 				</div>
 			</div>
@@ -219,7 +214,7 @@
 					    <label for="pswd_input">Password</label>
 					    <input type="password" class="form-control" id="pswd_input" placeholder="Enter password">
 					 </div>
-					 <button type="button"class="btn btn-default" id="btn-register"> create account </button>
+					 <button type="button"class="btn btn-default" id="btn-create"> create account </button>
 					 <button type="button" class="btn btn-default" id="btn-cancel"> cancel </button>
 					 <p class="text-danger hidden" > there's something miss </p>
 				</div>
@@ -236,31 +231,10 @@
 				 nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
 				 voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
 				 cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			</div>
+			</div> 
 		</script>
 		
-		<!-- TEMPLATE USER PROFILE  -->
-		<script type="text/template" id="user_profile">
-			<div class="row">
-				<div class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
-		    	 <div class="well profile">
-		            <div class="col-sm-12">
-		                <div class="col-xs-12 col-sm-8">
-		                    <h2>Profile</h2>
-		                    <p><strong>Full name: </strong>  <%= guest.fullname %>. </p>
-		                    <p><strong>Email: </strong>  <%= guest.email %>. </p>
-		                    <p><strong>Address: </strong>  <%= guest.address %>. </p>
-		                    <p><strong>Username: </strong>  <%= guest.username %>. </p>
-		                </div>
-		                <div class="col-xs-12 col-sm-4 text-center">
-                    <figure>
-                        <img src="img/default-user-icon-profile.png" class="img-circle img-responsive">
-                    </figure>
-		            </div>
-		          </div>
-		        </div>
-			</div>
-		</script>
+
 		
 		<!-- TEMPLATE LIST OF COMICS -->
 		<script type="text/template" id="list_comics">
@@ -309,24 +283,46 @@
 		    	 <div class="profile">
 		            <div class="col-sm-12">
 		                <div class="col-xs-12 col-sm-8">
-		                    <p><strong>Title: </strong>  <%= comic.title %>. </p>
-		                    <p><strong>Creator: </strong>  <%= comic.creater %>. </p>
-		                    <p><strong>Edition: </strong>  <%= comic.edition %>. </p>
-		                    <p><strong>Genre: </strong>  <%= comic.genre %>. </p>
+		                    <p><strong>Title: </strong>  <%= jsonComic.title %>. </p>
+		                    <p><strong>Creator: </strong>  <%= jsonComic.creater %>. </p>
+		                    <p><strong>Edition: </strong>  <%= jsonComic.edition %>. </p>
+		                    <p><strong>Genre: </strong>  <%= jsonComic.genre %>. </p>
 		                    <p><strong>Details:</strong></p>
-		                    <p><%= comic.detail %></p>
+		                    <p><%= jsonComic.detail %></p>
 		                </div>
 <!--		                	<div class="col-xs-12 col-sm-4 text-center">
 		          </div> -->
 		          	</div>
 				</div>
 		</script>
+		
+		<!-- TEMPLATE USER PROFILE  -->
+		<script type="text/template" id="user_profile">
+			<div class="row">
+				<div class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
+		    	 <div class="well profile">
+		            <div class="col-sm-12">
+		                <div class="col-xs-12 col-sm-8">
+		                    <h2>Profile</h2>
+		                    <p><strong>Full name: </strong>  <%= guest.fullname %>. </p>
+		                    <p><strong>Email: </strong>  <%= guest.email %>. </p>
+		                    <p><strong>Address: </strong>  <%= guest.address %>. </p>
+		                    <p><strong>Username: </strong>  <%= guest.username %>. </p>
+		                </div>
+		                <div class="col-xs-12 col-sm-4 text-center">
+                    <figure>
+                        <img src="img/default-user-icon-profile.png" class="img-circle img-responsive">
+                    </figure>
+		            </div>
+		          </div>
+		        </div>
+			</div>
+		</script>
 
 		<!-- SCRIPT  -->
 		<!-- libraries -->
 		<script src="js/lib/jquery-1.11.1.min.js"></script>
 		<script src="js/lib/bootstrap.min.js"></script>
-		<script src="js/lib/underscore.js"></script>
 		<script src="js/lib/underscore-min.js"></script>
 		<script src="js/lib/backbone-min.js"></script>
 		<script src="js/lib/backbone.localStorage.js"></script>
@@ -354,9 +350,10 @@
 		
 		<!-- views -->
 		<script src="js/views/auth_view.js"></script>
+		<script src="js/views/comic_view.js"></script>
 		<script src="js/views/home_view.js"></script>
 		<script src="js/views/admin_view.js"></script>
-		<script src="js/views/comic_view.js"></script>
+
 
 
 		<!-- routers -->

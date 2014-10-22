@@ -7,7 +7,7 @@
 
 
 app.userModel = Backbone.Model.extend({
-	
+	//url:'/user',
 	defaults:{
 		id:0,
 		fullname:'',

@@ -13,7 +13,7 @@
 app.UserCollection = Backbone.Collection.extend({
 	model: app.userModel,
 	localStorage: new Backbone.LocalStorage('user_store'),
-	url: 'users',
+
 	initialize: function ()
 	{
 		var admin = {
@@ -43,7 +43,8 @@ app.UserCollection = Backbone.Collection.extend({
 			var user_auth = regexp.exec(data.username); // return an array
 			var pswd_auth = regexp_pswd.exec(data.pswd); // return an array
 
-			
+			console.log(user_auth, 'user_auth');
+			console.log(pswd_auth, 'pswd_auth');
 			if (user_auth[0] === data.username && data.pswd === pswd_auth[0]){
 				data.id = this.nextOrder();
 				var user = new app.userModel(data);
@@ -88,6 +89,7 @@ app.UserCollection = Backbone.Collection.extend({
 	{
 		return user.get('username');
 	},
+	
 	nextOrder: function (){
 		if (!this.length){
 			return 1;
@@ -100,7 +102,6 @@ app.UserCollection = Backbone.Collection.extend({
 
 app.user_collection = new app.UserCollection();
 
-//console.log(app.user_collection.localStorage);
 
 
 

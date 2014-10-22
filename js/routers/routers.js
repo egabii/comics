@@ -65,11 +65,8 @@ app.Routers = Backbone.Router.extend({
 	logout: function () 
 	{ 
 		if (app.auth_view.logout()){
-			location.hash = '';
-			app.navbar_guest_view.remove();
-			app.footer_view.remove();
-			app.sidebar_view.remove();
-		}
+			window.location.href = '';
+		} 
 	},
 	
 	admin: function ()

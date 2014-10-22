@@ -17,11 +17,10 @@ div.page-header {
 	margin: 15px 0 20px;
 }
 
-.navbar-collapse.collapse, .input-group, .nav.navbar-nav.navbar-right{ display: inline-block; }
+.navbar-collapse.collapse, .input-group, .nav.navbar-nav.navbar-right { display: inline-block; }
 
-.input-group-btn{
-	width: 80px;
-}
+.input-group-btn { width: 80px; }
+
 .input-group { margin-top: 10px; }
 
 .comic-icon { height: 40px; }
@@ -32,7 +31,7 @@ div.page-header {
 }
 
 
-.col-centered{
+.col-centered {
     float: none;
     margin: 0 auto;
 }
@@ -46,7 +45,11 @@ div.page-header {
 /*
  * SIDEBAR SECTION
  */
-.most-recommended li, .most-searched li{ list-style: none; text-align:left }
+.most-recommended li, .most-searched li { 
+	list-style: none; 
+	text-align:left 
+}
+
 .sidebar h4 { text-align: center; }
 
 /*
@@ -143,11 +146,11 @@ div.page-header {
 	width: 65px;
 	height: 65px;
 	background-image: url('/img/sn_icon/social_icons_sprite.png');
-	background-position: 448px 0px;
+	background-position: 450px 0px;
 }
 
 .box.social_network .gplus:hover {
 	background-image: url('/img/sn_icon/social_icons_sprite.png');
-	background-position: 448px -65px;
+	background-position: 450px -65px;
 }
 
