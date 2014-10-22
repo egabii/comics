@@ -12,7 +12,7 @@
  *  HOME VIEW
  */
 div.page-header {
-	background-image: url('http://local.comics/img/covers_.jpg');
+	background-image: url('/img/covers_.jpg');
 	height: 300px;
 	margin: 15px 0 20px;
 }
