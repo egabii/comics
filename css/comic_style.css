@@ -1,5 +1,10 @@
 
 
+div#app_content { 
+	padding-top: 10px;
+	padding-bottom: 10px; 
+}
+
 /*
  * LOGIN AND REGISTER VIEW
  */
@@ -7,6 +12,8 @@
 	font-weight: bold; 
 	float:left	
 }
+
+.button-group { float: right; }
 
 /*
  *  HOME VIEW

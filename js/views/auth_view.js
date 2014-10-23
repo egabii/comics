@@ -75,6 +75,7 @@ app.AuthView = Backbone.View.extend({
 	}
 });
 
+
 app.RegisterView = Backbone.View.extend({
 	
 	el: '#app_content',
@@ -82,8 +83,8 @@ app.RegisterView = Backbone.View.extend({
 	template: _.template($('#tpl_register').html()),
 	
 	events: {
-		'click #btn-create' :	'createAccount',
-		'click #btn-cancel'	  :	'notCreateAccount'
+		'click #btn-create'	:	'createAccount',
+		'click #btn-cancel'	:	'notCreateAccount'
 	},
 
 	render: function ()
@@ -92,39 +93,52 @@ app.RegisterView = Backbone.View.extend({
 		return this;	
 	},
 	
-	createAccount: function(evt)
+	pswdMatch: function (pswd)
 	{
-		if (evt) evt.preventDefault();
-		var user = {
-				fullname: $('#fullname_input').val(),
-				email: $('#email_input').val(),
-				address: $('#address_input').val(),
-				username: $('#username_input').val(),
-				pswd: $('#pswd_input').val()
-			};
-		//console.log(this.validate());
-		var result = app.user_collection.createNewUser(user);
-		console.log(result, 'resultado de la registracion');
-		console.log(app.user_collection.models,' models in user_collection');
-		if (result) {
-			window.location.href = '';	
-		}else{
-			$('.text-danger').removeClass('hidden');
-		}
-	/*	if (this.validate(user)){
-
-		}else{
-			$('.text-danger').removeClass('hidden');
-		} */
-	},
-	
-/*	validate: function (user)
-	{
-		if (user.username  && user.pswd){
+		if(pswd === user.pswd){
 			return true;
 		}
 		return false;
-	}, */ 
+	},
+	
+	createAccount: function(evt)
+	{
+		if(evt) evt.preventDefault();
+		
+		var me = this;
+		var options = {
+			successs: function ()
+			{
+				me.hideErrors();
+			},
+			error: function (model, errors)
+			{
+				me.showErrors(errors);	
+			}
+		};
+		var user = {
+				email: $('#email_input').val(),
+				username: $('#username_input').val(),
+				pswd: $('#pswd_input').val(),
+		};
+		
+		this.model.save(user,options);		
+	},
+	
+	hideErrors: function ()
+	{
+		me.$('.popover.fade.right.in').addClass('hidden');
+	},
+	
+	showErrors: function (errors)
+	{
+        _.each(errors, function (error) {
+            var controlGroup = this.$('#msg-' + error.field);
+            controlGroup.removeClass('hidden');
+            controlGroup.find('.popover-title').text(error.type);
+            controlGroup.find('.popover-content').text(error.msg);
+        }, this);
+	},
 	
 	notCreateAccount: function ()
 	{ 
@@ -134,5 +148,5 @@ app.RegisterView = Backbone.View.extend({
 	
 });
 
-app.register_view = new app.RegisterView();
+app.register_view = new app.RegisterView({ model:app.userModel });
 app.auth_view = new app.AuthView();

@@ -21,125 +21,118 @@
 		
 	</head>
 	<body>
-		<header class="container">
-			<div class="row">
+		
+		<div id="main" class="container">
+			<header class='row'>
 				<div class="col-md-12">
 					<div class="page-header"> &nbsp; </div>	
 				</div>				
-			</div>
-		</header>	
-		<div id="app_navbar" class="container">
+			</header>							
+			<div id="app_navbar" class="row">
 			
+			</div>
+			<div id="app_content">
+				
+			</div>
+			<aside id="sidebar_content" class="col-md-4">
+				
+			</aside>
+			<footer id='footer_content' class="row">
+			
+			</footer>
 		</div>
+
+
 		<div class="container">
 			<div class="row">
-				<div id="app_content">
-				
-				</div>
+
 		
-				<div id="sidebar_content" class="col-md-4">
-				
-				</div>
+
 			</div>
 
 		</div>
-		<footer id='footer_content' class="container">
-			
-		</footer>
+
 		
 		<!--  TEMPLATES -->
 		<!-- TEMPLATE NAVBAR SECTION -->
-		<script type="text/template" id="tpl_navbar_partial">
-		
-			<div class="row">
-				<div class="col-md-12">	
-					<!-- site nav -->
-					<div class="navbar navbar-default" role="navigation">
-				        <div class="container-fluid">
-				          <div class="navbar-header">
-				            <a class="navbar-brand" href="#home"><img src="img/comic_icon.jpg" class="comic-icon"/></a>
-				          </div>
-				          <div class="navbar-collapse collapse">
-				            <ul class="nav navbar-nav">
-				            	<li><a href="#home"> Home </a></li>
-				              	<li><a href="#comics"> Comics </a></li>
-				              	<li><a href="#home"> Characters </a></li>
-				              	<li><a href="#home"> News </a></li>
-				            	<li class="dropdown">
-					                <a href="#home" class="dropdown-toggle" data-toggle="dropdown">
-					                	Genre <span class="caret"></span>
-					                </a>
-					                <ul class="dropdown-menu" role="menu">
-					                  <li><a href="#home"> Science Fiction</a></li>
-					                  <li><a href = "#home"> Police </a></li>
-					                  <li><a href = "#home"> Thriller </a></li>
-					                   <li><a href = "#home"> Adventure </a></li>
-					                </ul>
-				           	 	</li>
-				            </ul>
-				            <!-- search box  -->
-<!--							<div class="input-group">
-							  <input type="text" class="form-control">
-							  <span class="input-group-btn">
-								<button class="btn btn-default" type="button">Go!</button>
-							  </span>
-				</div>		-->
-							<!-- user nav -->	            
-				            <ul class="nav navbar-nav navbar-right">
-				            	<li class="dropdown">
-					                <a href="#home" class="dropdown-toggle" data-toggle="dropdown">
-					                	<span class="glyphicon glyphicon-user"></span>  <%= guest %> <span class="caret"></span>
-					                </a>
-					                <ul class="dropdown-menu" role="menu">
-					                  <li><a href = "#user/profile">Account</a></li>
-					                  <li><a href = "#user/profile">Profile</a></li>					                	
-					                  <li ><a href="#logout">Logout</a> </li>
-					                  <li><a href = "#home"></a></li>
+		<script type="text/template" id="tpl_navbar_partial">		
+			<div class="col-md-12">	
+				<!-- site nav -->
+				<div class="navbar navbar-default" role="navigation">
+			        <div class="container-fluid">
+			          <div class="navbar-header">
+			            <a class="navbar-brand" href="#home"><img src="img/comic_icon.jpg" class="comic-icon"/></a>
+			          </div>
+			          <div class="navbar-collapse collapse">
+			            <ul class="nav navbar-nav">
+			            	<li><a href="#home"> Home </a></li>
+			              	<li><a href="#comics"> Comics </a></li>
+			              	<li><a href="#home"> Characters </a></li>
+			              	<li><a href="#home"> News </a></li>
+			            	<li class="dropdown">
+				                <a href="#home" class="dropdown-toggle" data-toggle="dropdown">
+				                	Genre <span class="caret"></span>
+				                </a>
+				                <ul class="dropdown-menu" role="menu">
+				                  <li><a href="#home"> Science Fiction</a></li>
+				                  <li><a href = "#home"> Police </a></li>
+				                  <li><a href = "#home"> Thriller </a></li>
+				                   <li><a href = "#home"> Adventure </a></li>
+				                </ul>
+			           	 	</li>
+			            </ul>            
+			            <ul class="nav navbar-nav navbar-right">
+			            	<li class="dropdown">
+				                <a href="#home" class="dropdown-toggle" data-toggle="dropdown">
+				                	<span class="glyphicon glyphicon-user"></span>  <%= guest %> <span class="caret"></span>
+				                </a>
+				                <ul class="dropdown-menu" role="menu">
+				                  <li><a href = "#user/profile">Account</a></li>
+				                  <li><a href = "#user/profile">Profile</a></li>					                	
+				                  <li ><a href="#logout">Logout</a> </li>
+				                  <li><a href = "#home"></a></li>
 
-					                </ul>
-				           	 	</li>
-				            </ul>
-				          </div><!--/.nav-collapse -->
-				        </div><!--/.container-fluid -->
-			      </div>
-				</div>
-			</div>	
+				                </ul>
+			           	 	</li>
+			            </ul>
+			          </div><!--/.nav-collapse -->
+			        </div><!--/.container-fluid -->
+		      </div>
+			</div>
 		</script>
 		
 		<!-- TEMPLATE FOOTER SECTION  -->
 		<script type="text/template" id="footer_section">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="box navigation">
-						<h4> PAGES </h4>
-						<ul>
-							<li><a href="#home"> Home </a></li>
-							<li><a href="#comics"> Comics </a></li>
-				            <li><a href="#home"> Characters </a></li>
-				            <li><a href="#home"> News </a></li>
-				            <li><a href="#home"> Genre </a></li>
-						</ul>
-					</div>
-					<div class=" box contact-box">
-						<h4> CONTACT ME </h4>
-						<ul >
-							<li> <strong> Tel.</strong> 362-15-4343312 </li>
-							<li> <strong> Address </strong> Calle Falsa 123, Pasadena California </li>
-							<li> <strong> Email </strong> sheldon.cooper@example.com </li>
-						</ul>	
-					</div>
-					<div class=" box social_network">
-						<h4> FOLLOW ME </h4>
-						<ul >
-							<li><a class="fbk" href="#home">  </a></li>
-							<li><a class="twt" href="#home"> </a></li>
-							<li><a class="lkn" href="#home"> </a></li>
-							<li><a class="youtube" href="#home"></a></li>
-							<li><a class="gplus" href="#home"> </a></li>
-						</ul>					
-					</div>				
+			<div class="col-md-12">
+				<div class="box navigation">
+					<h4> PAGES </h4>
+					<ul>
+						<li><a href="#home"> Home </a></li>
+						<li><a href="#comics"> Comics </a></li>
+			            <li><a href="#home"> Characters </a></li>
+			            <li><a href="#home"> News </a></li>
+			            <li><a href="#home"> Genre </a></li>
+					</ul>
+				</div>
+				<div class=" box contact-box">
+					<h4> CONTACT ME </h4>
+					<ul >
+						<li> <strong> Tel.</strong> 362-15-4343312 </li>
+						<li> <strong> Address </strong> Calle Falsa 123, Pasadena California </li>
+						<li> <strong> Email </strong> sheldon.cooper@example.com </li>
+					</ul>	
+				</div>
+				<div class=" box social_network">
+					<h4> FOLLOW ME </h4>
+					<ul >
+						<li><a class="fbk" href="#home">  </a></li>
+						<li><a class="twt" href="#home"> </a></li>
+						<li><a class="lkn" href="#home"> </a></li>
+						<li><a class="youtube" href="#home"></a></li>
+						<li><a class="gplus" href="#home"> </a></li>
+					</ul>					
 				</div>				
-			</div>
+			</div>				
 		</script>
 		
 		<!-- TEMPLATE SIDEBAR  -->
@@ -185,7 +178,7 @@
 		
 		<!-- TEMPLATE REGISTER -->
 		<script type="text/template" id="tpl_register">
-			<div class="panel panel-default" style="width: 300px; margin: 0 auto;">
+			<div id="form" class="panel panel-default" style="width: 800px; margin: 0 auto;">
 				<div class="panel-heading" style="overflow: hidden;">
 					
 					<h4 class="register-title" >CREATE USER</h4>
@@ -195,28 +188,45 @@
 				</div>
 				<div class="panel-body">
 					 <div class="form-group">
-					    <label for="fullname_input">Full Name</label>
-					    <input type="text" class="form-control" id="fullname_input" placeholder="Enter full name">
-					 </div>
-					 <div class="form-group">
 					    <label for="email_input"> Email </label>
 					    <input type="email" class="form-control" id="email_input" placeholder="Enter email">
 					 </div>
-					 <div class="form-group">
-					    <label for="address_input"> Address </label>
-					    <input type="text" class="form-control" id="address_input" placeholder="Enter Address">
-					 </div>							 
+					 <div id="msg-email" class="popover fade right in hidden" role="tooltip" id="popover533207" style="top: 485px; left: 1016px; display: block;">
+						<div class="arrow"> </div>
+						<h3 class="popover-title" style="color: #FF0000; "> Error </h3>
+						<div class="popover-content"></div>
+					 </div>				 
 					 <div class="form-group">
 					    <label for="username_input">Username</label>
 					    <input type="text" class="form-control" id="username_input" placeholder="Enter username">
+					 </div>
+					 <div id="msg-username" class="popover fade right in hidden" role="tooltip" id="popover533207" style="top: 638.5px; left: 1016px; display: block;">
+						<div class="arrow"> </div>
+						<h3 class="popover-title" style="color: #FF0000; "> Error </h3>
+						<div class="popover-content">  </div>
 					 </div>
 					 <div class="form-group">
 					    <label for="pswd_input">Password</label>
 					    <input type="password" class="form-control" id="pswd_input" placeholder="Enter password">
 					 </div>
-					 <button type="button"class="btn btn-default" id="btn-create"> create account </button>
-					 <button type="button" class="btn btn-default" id="btn-cancel"> cancel </button>
-					 <p class="text-danger hidden" > there's something miss </p>
+				     <div id="msg-pswd" class="popover fade right in hidden" role="tooltip" id="popover533207" style="top: 715.5px; left:1016px; display: block;">
+						 <div class="arrow"> </div>
+						 <h3 class="popover-title" style="color: #FF0000; "> Error </h3>
+						 <div class="popover-content">  </div>
+				 	 </div>
+	<!--				 <div class="form-group">
+					    <label for="pswd_repeat_input"> Confirm Password</label>
+					    <input type="password" class="form-control" id="pswd_repeat_input" placeholder="Confirm password">
+					 </div>
+				     <div id="msg-pswd-repeated" class="popover fade right in hidden" role="tooltip" id="popover533207" style="top: 793.5px; left:1016px; display: block;">
+						 <div class="arrow"> </div>
+						 <h3 class="popover-title" style="color: #FF0000; "> Error </h3>
+						 <div class="popover-content"> </div>
+				 	 </div> -->
+					 <div class="button-group">
+						 <button type="submit"class="btn btn-default" id="btn-create"> create account </button>
+						 <button type="button" class="btn btn-default" id="btn-cancel"> cancel </button>					 	
+					 </div>
 				</div>
 			</div>
 		</script>
@@ -340,10 +350,9 @@
 		<script src="js/collections/user_collection.js"></script>
 		<script src="js/collections/session_collection.js"></script>
 		<script src="js/collections/comic_collection.js"></script>
-		<script src="js/collections/loan_collection.js"></script>
+
 		
 		<!-- partial section -->
-		<script src="js/views/partials/sidebar_view.js"></script>
 		<script src="js/views/partials/navbar_view.js"></script>
 		<script src="js/views/partials/footer_view.js"></script>
 		<script src="js/views/partials/sidebar_view.js"></script>
@@ -353,6 +362,8 @@
 		<script src="js/views/comic_view.js"></script>
 		<script src="js/views/home_view.js"></script>
 		<script src="js/views/admin_view.js"></script>
+		<!-- app main view  -->
+		<script src="js/views/app_view.js"></script>
 
 
 

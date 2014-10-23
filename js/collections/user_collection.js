@@ -21,14 +21,45 @@ app.UserCollection = Backbone.Collection.extend({
 		pswd: 'bazinga',
 		admin: true
 		};
-		this.createNewUser(admin);
+		this.create(admin);
 		this.fetch();
 	},
 
-	createNewUser: function (data)
+	ifExist: function (data)
+	{
+		var result = this.findWhere(data);
+		if (result){
+			return true;
+		}
+		return false;
+	},
+		
+	editProfile: function ()
+	{ 
+		console.log('edit profile'); 
+	},
+	
+	comparator: function (user)
+	{
+		return user.get('username');
+	},
+	
+	nextOrder: function ()
+	{
+		if (!this.length){
+			return 1;
+		}
+		return this.last().get('_id') + 1;
+	}
+	
+});
+
+
+app.user_collection = new app.UserCollection();
+
+/*	createNewUser: function (data)
 	{	
-		var regexp = /[A-Za-z0-9]+/; // regex for user
-		var regexp_pswd = /[A-Za-z0-9]{7,20}$/; // regex for password
+
 		
 		if (!this.ifExist(data)){
 			// data is a litary object data === {}
@@ -38,7 +69,7 @@ app.UserCollection = Backbone.Collection.extend({
 			/* The collection simply prevents you from adding models that have the same id. If you were to add models with 
 			 * different ids everything should work just fine. In your case if you really don't intend to manage the ids by 
 			 * yourself you could omit them upon model instantiation and have backbone generate them for you
-			 */
+			 
 
 			var user_auth = regexp.exec(data.username); // return an array
 			var pswd_auth = regexp_pswd.exec(data.pswd); // return an array
@@ -57,52 +88,7 @@ app.UserCollection = Backbone.Collection.extend({
 		}else{
 			console.log(data,' already exist');
 		}
-	},
-	
-	ifExist: function (data)
-	{
-		var result = this.findWhere(data);
-		if (result){
-			return true;
-		}
-		return false;
-	},
-	
-	deleteUser: function (data)
-	{
-		if (this.ifExist(data)) {
-			var user = this.remove(data);
-			user.destroy();
-			this.fetch();
-			
-		}else{
-			console.log('error this user doesn\'t exist');
-		}
-	},
-	
-	editProfile: function ()
-	{ 
-		console.log('edit profile'); 
-	},
-	
-	comparator: function (user)
-	{
-		return user.get('username');
-	},
-	
-	nextOrder: function (){
-		if (!this.length){
-			return 1;
-		}
-		return this.last().get('id') + 1;
-	}
-	
-});
-
-
-app.user_collection = new app.UserCollection();
-
-
+	}, */
 
 
 
