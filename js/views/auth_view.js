@@ -82,8 +82,8 @@ app.RegisterView = Backbone.View.extend({
 	template: _.template($('#tpl_register').html()),
 	
 	events: {
-		'click #btn-create' :	'createAccount',
-		'click #btn-cancel'	  :	'notCreateAccount'
+		'click #btn-create'	:	'createAccount',
+		'click #btn-cancel'	:	'notCreateAccount'
 	},
 
 	render: function ()
@@ -107,6 +107,7 @@ app.RegisterView = Backbone.View.extend({
 		console.log(result, 'resultado de la registracion');
 		console.log(app.user_collection.models,' models in user_collection');
 		if (result) {
+			
 			window.location.href = '';	
 		}else{
 			$('.text-danger').removeClass('hidden');

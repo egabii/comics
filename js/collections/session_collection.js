@@ -8,37 +8,26 @@ app.SessionCollection = Backbone.Collection.extend({
 	model: app.SessionModel, // always say what model belongs to this collection
 	localStorage: new Backbone.LocalStorage('session_store'), // sth that you need to 
 	
-	login: function ( data ) {
-
+	login: function ( data ) 
+	{	
+		
 		// GET USER DATA
-		var user = app.user_collection.findWhere(data);
-		console.log(user);
+		var user = app.user_collection.ifExist(data);
 		// CHECK IF EXIST
-		if(user)
-		{
+		if (user){
 			this.fetch();
-
 			var session = this.get(0);
 			if(!session)
 			{
 				session = new app.SessionModel({ 
-					session	 : true, 
-					username : user.get('username') 
+					session	: true, 
+					id_user	: user.get('id') 
 				});
-				//console.log(session.toJSON());
+				
 				this.add(session);
 				session.save();
 				this.fetch();
 			}
-/*			else
-			{
-				session.set({
-					session  : true,
-					username : user.get('username')
-				});
-				session.save();
-				this.fetch();
-			} */
 
 			return true;
 		}
@@ -49,16 +38,9 @@ app.SessionCollection = Backbone.Collection.extend({
 	
 	check_login: function () {
 		
-		this.fetch();
 		// GET SESSION DATA
-		var session = this.get(0);
-		console.log(session, 'session ');
-		// CHECK IF EXIST
-		if (session){
-			// STILL LOGIN
-			return true;
-		}
-		return false; // not login anymore
+		this.fetch();
+		return session = this.get(0);
 	},
 
 	logout: function () {

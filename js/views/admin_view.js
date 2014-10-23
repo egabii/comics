@@ -12,7 +12,7 @@ app.AdminView = Backbone.View.extend({
 	
 	el: '#app_content',
 	template: $('#tpl_admin').html(),
-	model: app.user_collection.get(0),
+	model: app.user_collection.get(1),
     render: function () 
     {
     	console.log('view');

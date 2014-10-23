@@ -1,4 +1,4 @@
-
+	
 
 /*
  *  Routers --> url
@@ -34,12 +34,10 @@ app.Routers = Backbone.Router.extend({
 	
     	if (login){
     		app.home_view.render();
-    		app.navbar_guest_view.render(app.session_collection.get(0).get('username'));
+    		app.navbar_guest_view.render(app.session_collection.get(0).get('id_user'));
     		app.comic_view.renderMostRecommended();
 
     		app.footer_view.render();
-    	}else{
-    		location.hash = '';
     	}
     },	
 	comics: function ()

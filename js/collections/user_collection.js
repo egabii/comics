@@ -14,21 +14,11 @@ app.UserCollection = Backbone.Collection.extend({
 	model: app.userModel,
 	localStorage: new Backbone.LocalStorage('user_store'),
 	url:'/users',
-	initialize: function ()
-	{
-		var admin = {
-		username: 'sheldon',
-		pswd: 'bazinga',
-		admin: true
-		};
-		this.createNewUser(admin);
-		this.fetch();
-	},
 
 	createNewUser: function (data)
 	{	
-		var regexp = /[A-Za-z0-9]+/; // regex for user
-		var regexp_pswd = /[A-Za-z0-9]{7,20}$/; // regex for password
+		var regexp = new RegExp('[A-Za-z0-9]+'); // regex for user
+		var regexp_pswd = new RegExp('[A-Za-z0-9]{7,20}$'); // regex for password
 		
 		if (!this.ifExist(data)){
 			// data is a litary object data === {}
@@ -39,18 +29,17 @@ app.UserCollection = Backbone.Collection.extend({
 			 * different ids everything should work just fine. In your case if you really don't intend to manage the ids by 
 			 * yourself you could omit them upon model instantiation and have backbone generate them for you
 			 */
-
-			var user_auth = regexp.exec(data.username); // return an array
-			var pswd_auth = regexp_pswd.exec(data.pswd); // return an array
-
-			console.log(user_auth, 'user_auth');
-			console.log(pswd_auth, 'pswd_auth');
-			if (user_auth[0] === data.username && data.pswd === pswd_auth[0]){
+			if (regexp.test(data.username) && regexp_pswd.test(data.pswd)){
+				
+				if (data.username === 'sheldon'){
+					data.admin = true;
+				}
+				
 				data.id = this.nextOrder();
 				var user = new app.userModel(data);
 				this.add(user);
 				user.save();
-				this.fetch();
+				//this.fetch();
 				return true;
 			}
 			return false;
@@ -59,31 +48,7 @@ app.UserCollection = Backbone.Collection.extend({
 		}
 	},
 	
-	ifExist: function (data)
-	{
-		var result = this.findWhere(data);
-		if (result){
-			return true;
-		}
-		return false;
-	},
-	
-	deleteUser: function (data)
-	{
-		if (this.ifExist(data)) {
-			var user = this.remove(data);
-			user.destroy();
-			this.fetch();
-			
-		}else{
-			console.log('error this user doesn\'t exist');
-		}
-	},
-	
-	editProfile: function ()
-	{ 
-		console.log('edit profile'); 
-	},
+	ifExist: function (data){ return this.findWhere(data); },
 	
 	comparator: function (user)
 	{
@@ -101,6 +66,7 @@ app.UserCollection = Backbone.Collection.extend({
 
 
 app.user_collection = new app.UserCollection();
+app.user_collection.fetch();
 
 
 
