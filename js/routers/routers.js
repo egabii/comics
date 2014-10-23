@@ -8,13 +8,14 @@
 app.Routers = Backbone.Router.extend({
 	
 	routes: {
-		''          : 'login',
-		'register'  : 'register',
-		'home'      : 'home',
-		'admin-page': 'admin',
-		'logout'	: 'logout',
-		'comics'	: 'comics',
-		'comics/:id': 'comicDetail'	
+		''          			: 'login',
+		'register'  			: 'register',
+		'home'      			: 'home',
+		'admin-page'			: 'admin',
+		'logout'				: 'logout',
+		'comics'				: 'comics',
+		'comics/:id'			: 'comicDetail',
+		'user/profile/:id'		: 'profile'
 	},
 	
 	login: function ()
@@ -44,7 +45,7 @@ app.Routers = Backbone.Router.extend({
 	comics: function ()
 	{
 		var login = app.session_collection.check_login();
-		if(login){
+		if (login){
 			app.comic_view.renderList();
 			app.navbar_guest_view.render(app.session_collection.get(0).get('username'));
     		app.comic_view.renderMostRecommended();
@@ -52,16 +53,22 @@ app.Routers = Backbone.Router.extend({
 		}
 		
 	},
-	comicDetail: function(id)
+	
+	comicDetail: function (id)
 	{
 		var login = app.session_collection.check_login();
-		if(login){
+		if (login){
 			app.comic_view.renderComicDetail(id);
 			app.navbar_guest_view.render(app.session_collection.get(0).get('username'));
     		app.comic_view.renderMostRecommended();
-    		app.footer_view.render();
+    		app.footer_view.render();			
 		}
-	},  
+	},
+	
+	profile: function(id)
+	{
+		
+	},
 	logout: function () 
 	{ 
 		if (app.auth_view.logout()){
@@ -74,10 +81,7 @@ app.Routers = Backbone.Router.extend({
 		var login = app.session_collection.check_login(); // bool 
 		if (login){
 			app.admin_view.render();	
-		}else{
-			location.hash = '';
 		}
-		
 	}
 	
 });

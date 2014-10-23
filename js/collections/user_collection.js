@@ -13,7 +13,7 @@
 app.UserCollection = Backbone.Collection.extend({
 	model: app.userModel,
 	localStorage: new Backbone.LocalStorage('user_store'),
-
+	url:'/users',
 	initialize: function ()
 	{
 		var admin = {

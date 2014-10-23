@@ -14,13 +14,14 @@ app.comicView = Backbone.View.extend({
 		// get all the comics from local storage
 		app.comic_collection.fetch();
 	},
-		// render comics view list
+	
+	// render a collection view 
 	renderList: function ()
 	{
 		var list_view;
 
-		list_view = new app.comicListView();
-		list_view.render(app.comic_collection);
+		list_view = new app.comicListView({ collection: app.comic_collection });
+		list_view.render();
 	},
 	renderMostRecommended: function ()
 	{
@@ -29,11 +30,13 @@ app.comicView = Backbone.View.extend({
 		app.sidebar_view.render(most_recommended);
 	},
 	
+	// render a model view
 	renderComicDetail: function (id)
 	{	
+		app.comic_collection.fetch();
 		var comic = app.comic_collection.get(id);
-		var comic_detail_view = app.comicDetailView();
-		comic_detail_view.render(comic.toJSON());
+		var comic_detail_view = new app.comicDetailView({model: comic});
+		comic_detail_view.render();
 	},
 	
 });
@@ -43,12 +46,12 @@ app.comicListView = Backbone.View.extend({
 	
 	el:'#app_content',
 	template: $('#list_comics').html(),
-	model: app.comicModel,
+//
 	
-	render: function (comics)
+	render: function ()
 	{
 		$('#app_content').addClass('col-md-8');
-		var tpl = _.template(this.template,{jsonComics: comics.toJSON()});
+		var tpl = _.template(this.template,{ jsonComics: this.collection.toJSON()});
 		this.$el.html( tpl );
 		return this;
 	}
@@ -57,13 +60,12 @@ app.comicListView = Backbone.View.extend({
 app.comicDetailView = Backbone.View.extend({
 	
 	el:'#app_content',
-	template: $('#comic_detail').html(),
-	model:app.comicModel,
+	template: $('#tpl_comic_detail').html(),
 	
-	render: function (comic)
+	render: function ()
 	{
 		$('#app_content').addClass('col-md-8'); 
-		var tpl = _.template(this.template, {jsonComic: comic } );
+		var tpl = _.template(this.template, { jsonComic: this.model.toJSON() });
 		this.$el.html( tpl );
 		return this;
 	}

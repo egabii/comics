@@ -10,7 +10,6 @@ app.comicCollection = Backbone.Collection.extend({
 	
 	model: app.comicModel,
 	localStorage: new Backbone.LocalStorage('comics_store'),
-	
 	most_recommended: function ()
 	{
 		// only the 5 most recommended
