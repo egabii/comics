@@ -35,7 +35,14 @@
 				
 			</div>
 			<aside id="sidebar_content" class="col-md-4">
-				
+				<div class="jumbotron sidebar">
+					<ul>
+						<li><a href=""> Popular <span class="glyphicon glyphicon-heart"> </span></a></li>
+						<li><a href=""> Qualifications <span class="glyphicon glyphicon-star"> </span></a></li>
+						<li><a href=""> Top Searches <span class="glyphicon glyphicon-search"> </span></a></li>
+						<li><a href=""> Most Recommended <span class="glyphicon glyphicon-thumbs-up"> </span></a></li>
+					</ul>
+				</div>				
 			</aside>
 			<footer id='footer_content' class="row">
 			
@@ -87,9 +94,9 @@
 				                	<span class="glyphicon glyphicon-user"></span>  <%= guest %> <span class="caret"></span>
 				                </a>
 				                <ul class="dropdown-menu" role="menu">
-				                  <li><a href = "#user/profile">Account</a></li>
+				                  <li><a href = "#user/profile">Account <span class="glyphicon glyphicon-dashboard"></span></a></li>
 				                  <li><a href = "#user/profile">Profile</a></li>					                	
-				                  <li ><a href="#logout">Logout</a> </li>
+				                  <li ><a href="#logout">Logout <span class="glyphicon glyphicon-off"> </span></a> </li>
 				                  <li><a href = "#home"></a></li>
 
 				                </ul>
@@ -137,22 +144,13 @@
 		
 		<!-- TEMPLATE SIDEBAR  -->
 		<script type="text/template" id="tpl_sidebar_section">
-				<div class="jumbotron sidebar">
-					<h4 class="dropdown-custom"> Most Recommended <span class="glyphicon glyphicon-thumbs-up"> </span>  </h4>
-					<ul class="most-recommended">
-						<% _.each(JsonData, function(comic){ %>
-						<li><a href="#comics/<%= comic.id %>"> <%=comic.title %> </a></li>
-						<% }); %>
-					</ul>
-					<hr style="border-color: #000000; "/>
 
-				</div>
 	
 		</script>
 		
 		<!-- TEMPLATE LOGIN -->
 		<script type="text/template" id="tpl_login">
-			<div class="panel panel-default" style="width: 300px; margin: auto;">
+			<div id='login-form' class="panel panel-default" style="width: 300px; margin: auto;">
 				<div class="panel-heading" style="overflow: hidden;">
 					<h4 class="login-title">LOGIN</h4>
 					<div style="float: right;">

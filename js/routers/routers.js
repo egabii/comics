@@ -20,6 +20,7 @@ app.Routers = Backbone.Router.extend({
 	login: function ()
 	{
 		app.auth_view.render();
+		$('#sidebar_content').addClass('hidden');
 	},
 	
 	register: function ()
@@ -33,8 +34,9 @@ app.Routers = Backbone.Router.extend({
 	
     	if (login){
     		app.home_view.render();
+    		$('#sidebar_content').removeClass('hidden');
     		app.navbar_guest_view.render(app.session_collection.get(0).get('username'));
-    		app.comic_view.renderMostRecommended();
+    		//app.comic_view.renderMostRecommended();
 
     		app.footer_view.render();
     	}else{
@@ -46,8 +48,9 @@ app.Routers = Backbone.Router.extend({
 		var login = app.session_collection.check_login();
 		if(login){
 			app.comic_view.renderList();
+			$('#sidebar_content').removeClass('hidden');
 			app.navbar_guest_view.render(app.session_collection.get(0).get('username'));
-    		app.comic_view.renderMostRecommended();
+    		//app.comic_view.renderMostRecommended();
     		app.footer_view.render();
 		}
 		
@@ -57,8 +60,9 @@ app.Routers = Backbone.Router.extend({
 		var login = app.session_collection.check_login();
 		if(login){
 			app.comic_view.renderComicDetail(id);
+			$('#sidebar_content').removeClass('hidden');
 			app.navbar_guest_view.render(app.session_collection.get(0).get('username'));
-    		app.comic_view.renderMostRecommended();
+    		//app.comic_view.renderMostRecommended();
     		app.footer_view.render();
 		}
 	},  

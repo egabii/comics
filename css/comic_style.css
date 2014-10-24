@@ -1,7 +1,7 @@
 
 
 div#app_content { 
-	padding-top: 10px;
+/*	padding-top: 10px; */
 	padding-bottom: 10px; 
 }
 
@@ -13,11 +13,18 @@ div#app_content {
 	float:left	
 }
 
+#login-form, #register-form {
+	position: fixed;
+	top: 25%;
+	left: 38%;
+}
+
 .button-group { float: right; }
 
 /*
  *  HOME VIEW
  */
+
 div.page-header {
 	background-image: url('/img/covers_.jpg');
 	height: 300px;
@@ -31,6 +38,8 @@ div.page-header {
 .input-group { margin-top: 10px; }
 
 .comic-icon { height: 40px; }
+
+span.glyphicon.glyphicon-dashboard, span.glyphicon.glyphicon-off { float: right; }
 
 .profile {
     min-height: 355px;
@@ -52,9 +61,9 @@ div.page-header {
 /*
  * SIDEBAR SECTION
  */
-.most-recommended li, .most-searched li { 
+.jumbotron.sidebar ul li { 
 	list-style: none; 
-	text-align:left 
+	text-align: left;
 }
 
 .sidebar h4 { text-align: center; }
