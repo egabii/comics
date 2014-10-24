@@ -8,16 +8,29 @@
 	float:left	
 }
 
+#login-form, #register-form {
+	position: fixed;
+	top:  25%;
+	left: 38%;
+}
 /*
  *  HOME VIEW
  */
 div.page-header {
-	background-image: url('http://local.comics/img/covers_.jpg');
+	background-image: url('/img/covers_.jpg');
 	height: 300px;
 	margin: 15px 0 20px;
 }
 
+
+/*
+ * NAVBAR
+ */
 .navbar-collapse.collapse, .input-group, .nav.navbar-nav.navbar-right { display: inline-block; }
+
+.dropdown-toggle span.glyphicon.glyphicon-user { float: left; padding-right: 5px }
+
+span.glyphicon.glyphicon-dashboard, span.glyphicon.glyphicon-off, span.glyphicon.glyphicon-user { float: right; }
 
 .input-group-btn { width: 80px; }
 
@@ -45,12 +58,20 @@ div.page-header {
 /*
  * SIDEBAR SECTION
  */
-.most-recommended li, .most-searched li { 
+.jumbotron.sidebar ul li { 
 	list-style: none; 
-	text-align:left 
+	text-align: left;
 }
 
+#sidebar_content { float: right; }
+
 .sidebar h4 { text-align: center; }
+
+.jumbotron.sidebar ul {
+	width: 200px;
+	padding: 10px;
+	height: 104px;
+}
 
 /*
  *  FOOTER SECTION

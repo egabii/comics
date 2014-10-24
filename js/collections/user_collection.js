@@ -13,8 +13,6 @@
 app.UserCollection = Backbone.Collection.extend({
 	model: app.userModel,
 	localStorage: new Backbone.LocalStorage('user_store'),
-	url:'/users',
-
 	createNewUser: function (data)
 	{	
 		var regexp = new RegExp('[A-Za-z0-9]+'); // regex for user

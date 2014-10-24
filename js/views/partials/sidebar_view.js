@@ -7,7 +7,7 @@
  * the following information: popular, qualifications, top searches and recommended.
  */
 
-
+/*
 
 app.sidebarView = Backbone.View.extend({
 
@@ -25,3 +25,4 @@ app.sidebarView = Backbone.View.extend({
 	}
 
 });
+*/

@@ -17,7 +17,7 @@ app.comicCollection = Backbone.Collection.extend({
 		
 		return comics.sort(function(a,b){
 			return b.recommended - a.recommended;
-		}).slice(0,5);
+		});
 	},
 	
 	most_searched: function ()

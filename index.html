@@ -37,8 +37,16 @@
 				
 				</div>
 		
-				<div id="sidebar_content" class="col-md-4">
-				
+				<div id="sidebar_content" class="col-md-3">
+					<div class="jumbotron sidebar">
+						<h3 style="text-align: center; ">Comics</h3>
+						<ul>
+							<li><a href="#comics/popular"> Popular <span class="glyphicon glyphicon-heart"> </span></a></li>
+							<li><a href="#comics/qualifiations"> Qualifications <span class="glyphicon glyphicon-star"> </span></a></li>
+							<li><a href="#comics/top_search"> Top Searches <span class="glyphicon glyphicon-search"> </span></a></li>
+							<li><a href="#comics/most_recommended"> Most Recommended <span class="glyphicon glyphicon-thumbs-up"> </span></a></li>
+						</ul>
+					</div>				
 				</div>
 			</div>
 
@@ -64,7 +72,17 @@
 				            	<li><a href="#home"> Home </a></li>
 				              	<li><a href="#comics"> Comics </a></li>
 				              	<li><a href="#characters"> Characters </a></li>
-				              	<li><a href="#news"> News </a></li>
+				              	<li class="dropdown">
+				              		<a href="#home" class="dropdown-toggle" data-toggle="dropdown"> 
+				              			News <span class="caret"></span> 
+				              		</a>
+					                <ul class="dropdown-menu" role="menu">
+					                  <li><a href="#news/new_comic"> new comics</a></li>
+					                  <li><a href = "#news/most_loans"> most loans </a></li>
+					                  <li><a href = "#news/videos"> videos </a></li>
+					                   <li><a href = "#news/games"> games </a></li>
+					                </ul>				              		
+				              	</li>
 				            	<li class="dropdown">
 					                <a href="#home" class="dropdown-toggle" data-toggle="dropdown">
 					                	Genre <span class="caret"></span>
@@ -78,15 +96,15 @@
 				           	 	</li>
 				            </ul>
       
-				            <ul class="nav navbar-nav navbar-right">
+							<ul class="nav navbar-nav navbar-right">
 				            	<li class="dropdown">
 					                <a href="#home" class="dropdown-toggle" data-toggle="dropdown">
 					                	<span class="glyphicon glyphicon-user"></span>  <%= guest %> <span class="caret"></span>
 					                </a>
 					                <ul class="dropdown-menu" role="menu">
-					                  <li><a href = "#user/profile">Account</a></li>
-					                  <li><a href = "#user/profile">Profile</a></li>					                	
-					                  <li ><a href="#logout">Logout</a> </li>
+					                  <li><a href = "#user/profile">Account <span class="glyphicon glyphicon-dashboard"></span></a></li>
+					                  <li><a href = "#user/profile">Profile <span class="glyphicon glyphicon-user"></span> </a></li>					                	
+					                  <li ><a href="#logout">Logout <span class="glyphicon glyphicon-off"> </span></a> </li>
 					                </ul>
 				           	 	</li>
 				            </ul>
@@ -100,7 +118,7 @@
 		<!-- TEMPLATE FOOTER SECTION  -->
 		<script type="text/template" id="footer_section">
 			<div class="row">
-				<div class="col-md-11">
+				<div class="col-md-12">
 					<div class="box navigation">
 						<h4> PAGES </h4>
 						<ul>
@@ -133,24 +151,10 @@
 			</div>
 		</script>
 		
-		<!-- TEMPLATE SIDEBAR  -->
-		<script type="text/template" id="tpl_sidebar_section">
-				<div class="jumbotron sidebar">
-					<h4 class="dropdown-custom"> Most Recommended <span class="glyphicon glyphicon-thumbs-up"> </span>  </h4>
-					<ul class="most-recommended">
-						<% _.each(JsonData, function(comic){ %>
-						<li><a href="#comics/<%= comic.id %>"> <%=comic.title %> </a></li>
-						<% }); %>
-					</ul>
-					<hr style="border-color: #000000; "/>
-
-				</div>
-	
-		</script>
 		
 		<!-- TEMPLATE LOGIN -->
 		<script type="text/template" id="tpl_login">
-			<div class="panel panel-default" style="width: 300px; margin: auto;">
+			<div id="login-form" class="panel panel-default" style="width: 300px; margin: auto;">
 				<div class="panel-heading" style="overflow: hidden;">
 					<h4 class="login-title">LOGIN</h4>
 					<div style="float: right;">
@@ -176,7 +180,7 @@
 		
 		<!-- TEMPLATE REGISTER -->
 		<script type="text/template" id="tpl_register">
-			<div class="panel panel-default" style="width: 300px; margin: 0 auto;">
+			<div id="register-form" class="panel panel-default" style="width: 300px; margin: 0 auto;">
 				<div class="panel-heading" style="overflow: hidden;">
 					
 					<h4 class="register-title" >CREATE USER</h4>
@@ -262,6 +266,21 @@
 							<% }) %>
 						</tbody>
 					</table>
+			</div>
+		</script>
+		
+		<script type="text/template" id="tpl_reco_comics">
+			<div id="recommended" class="panel panel-default">
+				<div class="panel-heading"> Most Recommended </div>
+				<ul class="list-group">
+					<% _.each(jsonComic, function(comic){ %>
+					<li class="list-group-item">
+						<a href="#comics/<%= comic.id %>">
+							<img src="<%= comic.cover %>" />
+						</a>
+					</li>
+					<% }) %>
+				</ul>
 			</div>
 		</script>
 		

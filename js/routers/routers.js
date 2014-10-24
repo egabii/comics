@@ -8,18 +8,20 @@
 app.Routers = Backbone.Router.extend({
 	
 	routes: {
-		''          			: 'login',
-		'register'  			: 'register',
-		'home'      			: 'home',
-		'admin-page'			: 'admin',
-		'logout'				: 'logout',
-		'comics'				: 'comics',
-		'comics/:id'			: 'comicDetail',
-		'user/profile/:id'		: 'profile'
+		''          					: 'login',
+		'register'  					: 'register',
+		'home'      					: 'home',
+		'admin-page'					: 'admin',
+		'logout'						: 'logout',
+		'comics'						: 'comics',
+		'comics/most_recommended'		: 'mostRecommended',
+		'comics/:id'					: 'comicDetail',
+		'user/profile/:id'				: 'profile'
 	},
 	
 	login: function ()
 	{
+		$('#sidebar_content').addClass('hidden');
 		app.auth_view.render();
 	},
 	
@@ -33,10 +35,9 @@ app.Routers = Backbone.Router.extend({
     	var login = app.session_collection.check_login();
 	
     	if (login){
+    		$('#sidebar_content').removeClass('hidden');
     		app.home_view.render();
     		app.navbar_guest_view.render(app.session_collection.get(0).get('id_user'));
-    		app.comic_view.renderMostRecommended();
-
     		app.footer_view.render();
     	}
     },	
@@ -44,12 +45,23 @@ app.Routers = Backbone.Router.extend({
 	{
 		var login = app.session_collection.check_login();
 		if (login){
+			$('#sidebar_content').removeClass('hidden');
 			app.comic_view.renderList();
-			app.navbar_guest_view.render(app.session_collection.get(0).get('username'));
-    		app.comic_view.renderMostRecommended();
+			app.navbar_guest_view.render(app.session_collection.get(0).get('id_user'));
     		app.footer_view.render();
 		}
 		
+	},
+	
+	mostRecommended: function ()
+	{
+		var login = app.session_collection.check_login();
+		if (login){
+			$('#sidebar_content').removeClass('hidden');
+			app.comic_view.renderMostRecommended();
+			app.navbar_guest_view.render(app.session_collection.get(0).get('id_user'));
+    		app.footer_view.render();		
+		}
 	},
 	
 	comicDetail: function (id)
@@ -57,8 +69,7 @@ app.Routers = Backbone.Router.extend({
 		var login = app.session_collection.check_login();
 		if (login){
 			app.comic_view.renderComicDetail(id);
-			app.navbar_guest_view.render(app.session_collection.get(0).get('username'));
-    		app.comic_view.renderMostRecommended();
+			app.navbar_guest_view.render(app.session_collection.get(0).get('id_user'));
     		app.footer_view.render();			
 		}
 	},

@@ -19,7 +19,8 @@ app.AuthView = Backbone.View.extend({
 	
 	render: function ()
 	{ 
-		$('#app_content').removeClass('col-md-8');
+		$('#app_content').removeClass('col-md-9');
+		$('header').remove();
 		this.$el.html(this.template); 
 	}, 
 	
