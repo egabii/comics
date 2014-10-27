@@ -17,8 +17,12 @@ app.Routers = Backbone.Router.extend({
 		'comics/most_recommended'		: 'mostRecommended',
 		'comics/top_searched'			: 'topSearched',
 		'comics/qualifications'			: 'qualification',
+		'comics/:id'					: 'comicDetail',
 		'characters/all'				: 'listCharacters',
-		'genre/:type'					: 'listByGenre',		
+		'characters/:id'				: 'singleCharacter',		
+		'genre/:type'					: 'listByGenre',
+		'news/games/all'				: 'gameList',
+		'news/games/:id'				: 'gameSingle', // No-Op		
 		'user/profile/:id'				: 'profile'
 	},
 	
@@ -95,44 +99,85 @@ app.Routers = Backbone.Router.extend({
 		}		
 	}, 
 	
-/*	comicDetail: function (id)
+	listByGenre: function(type)
 	{
 		var login = app.session_collection.check_login();
 		if (login){
 			$('#sidebar_content').removeClass('hidden');
+			$('header').removeClass('hidden');
+			app.comic_view.renderListByGenre(type);
+			app.navbar_guest_view.render(app.session_collection.get(0).get('id_user'));
+    		app.footer_view.render();		
+		}			
+	},
+
+	// COMIC SINGLE VIEW  
+	comicDetail: function (id)
+	{
+		var login = app.session_collection.check_login();
+		if (login){
+			$('#sidebar_content').removeClass('hidden');
+			$('header').removeClass('hidden');
 			app.comic_view.renderComicDetail(id);
 			app.navbar_guest_view.render(app.session_collection.get(0).get('id_user'));
     		app.footer_view.render();		
 		}	
-	},  */
+	},  
 	
 	listCharacters: function ()
 	{
 		var login = app.session_collection.check_login();
 		if (login){
 			$('#sidebar_content').removeClass('hidden');
-			//app.comic_view.renderComicDetail(id);
 			app.character_view.renderList();
 			app.navbar_guest_view.render(app.session_collection.get(0).get('id_user'));
     		app.footer_view.render();		
 		}			
 	},
-	
-	listByGenre: function(type)
+
+	singleCharacter: function (id)
 	{
 		var login = app.session_collection.check_login();
+		
 		if (login){
 			$('#sidebar_content').removeClass('hidden');
-			app.comic_view.renderListByGenre(type);
+			$('header').removeClass('hidden');
+			app.character_view.renderSingleCharacter(id);
+			app.navbar_guest_view.render(app.session_collection.get(0).get('id_user'));
+    		app.footer_view.render();		
+		}	
+	},
+
+	gameList: function ()
+	{
+		var login = app.session_collection.check_login();
+		
+		if (login){
+			$('#sidebar_content').removeClass('hidden');
+			$('header').removeClass('hidden');
+			app.game_view.renderList();
 			app.navbar_guest_view.render(app.session_collection.get(0).get('id_user'));
     		app.footer_view.render();		
 		}			
+	},
+	gameSingle: function (id)
+	{
+		var login = app.session_collection.check_login();
+		
+		if (login){
+			$('#sidebar_content').removeClass('hidden');
+			$('header').removeClass('hidden');
+			app.game_view.renderSingleGame(id);
+			app.navbar_guest_view.render(app.session_collection.get(0).get('id_user'));
+    		app.footer_view.render();		
+		}				
 	},
 		
 	logout: function () 
 	{ 
 		if (app.auth_view.logout()){
-			window.location.href = '';
+			this.login();
+			//window.location.href = '';
 		} 
 	},
 	

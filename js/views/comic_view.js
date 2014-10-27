@@ -4,10 +4,7 @@
 app.comicView = Backbone.View.extend({
 	
 	el: '#app_content',
-	
-/*	events: {
-		'click .btn-comic-detail' : renderComicDetail
-	},¨*/   
+  
 	
 	initialize: function()
 	{
@@ -56,10 +53,11 @@ app.comicView = Backbone.View.extend({
 	// render a model view
 	renderComicDetail: function (id)
 	{	
-		app.comic_collection.fetch();
+		//app.comic_collection.fetch();
 		var comic = app.comic_collection.get(id);
-		var comic_detail_view = new app.comicSingleView({ model: comic });
-		comic_detail_view.render();
+		console.log(comic, 'comic js/views/comic_view.js');
+		var comic_detail_view = new app.comicSingleView();
+		comic_detail_view.render(comic.toJSON());
 	}, 
 	
 });
@@ -79,19 +77,24 @@ app.comicListView = Backbone.View.extend({
 	}
 });
 
-/*app.comicSingleView = Backbone.View.extend({
+app.comicSingleView = Backbone.View.extend({
 	
 	el:'#app_content',
 	template: $('#tpl_comic_detail').html(),
 	
-	render: function ()
+	render: function (comic)
 	{
 		$('#app_content').addClass('col-md-9'); 
-		var tpl = _.template(this.template, { jsonComic: this.model.attributes });
+		var tpl = _.template(this.template, { jsonComic: comic });
 		this.$el.html( tpl );
 		return this;
+	},
+	
+	createStar: function ()
+	{
+		
 	}
-}); */ 
+});
 
 app.comicRecommendedView = Backbone.View.extend({
 	el:'#app_content',
@@ -137,10 +140,18 @@ app.comicListByGenreView = Backbone.View.extend({
 	el:'#app_content',
 	template: $('#tpl_list_byGenre').html(),
 	
+	events:{
+		
+	},
 	render: function (comics)
 	{
+		var json = {};
+		comics.forEach(function(elem){
+			json[elem.get('title')] = elem.toJSON();
+		});
+		
 		$('#app_content').addClass('col-md-9'); 
-		var tpl = _.template(this.template, { jsonComic: comics });
+		var tpl = _.template(this.template, { jsonComic: json, genre: json[comics[0].get('title')].genre });
 		this.$el.html( tpl );
 		return this; 
 	}

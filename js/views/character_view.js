@@ -23,7 +23,9 @@ app.characterView = Backbone.View.extend({
 	renderSingleCharacter: function (id)
 	{
 		var character = app.character_collection.get(id);
+//		console.log(character, ' character from character single view ');
 		var single_view = new app.characterSingleView({ model: character });
+		single_view.render();
 	}
 });
 
@@ -50,6 +52,7 @@ app.characterSingleView = Backbone.View.extend({
 	
 	render: function ()
 	{
+		var tpl_star = 'glyphicon glyphicon-star'; // create template for stars
 		$('#app_content').addClass('col-md-9');
 		var tpl = _.template(this.template, { jsonCharacter: this.model.toJSON() });
 		this.$el.html( tpl );

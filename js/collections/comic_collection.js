@@ -146,7 +146,7 @@ app.comic_collection.create({
 	genre:'police',
 	recommended:50,
 	searched: 79,
-	qualification: 120	
+	qualification: 100	
 });
 
 app.comic_collection.create({
@@ -183,7 +183,7 @@ app.comic_collection.create({
 	edition: 'Mad Edition',
 	cover: 'img/covers/Simpsons_Comics_201.png',
 	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',
-	genre:'Comedy',
+	genre:'comedy',
 	recommended: 260,
 	searched: 90,
 	qualification: 2

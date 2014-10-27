@@ -13,7 +13,7 @@ app.navbarView = Backbone.View.extend({
 
 	render: function (id) {
 		var user = app.user_collection.get(id);
-		console.log(user,' navbarView user parameter');
+		// console.log(user,' navbarView user parameter');
 		var tpl = _.template(this.template, { guest : user.get('username') });
 		this.$el.html( tpl );
 		return this;

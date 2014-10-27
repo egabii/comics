@@ -38,13 +38,13 @@
 				</div>
 		
 				<div id="sidebar_content" class="col-md-3">
-					<div class="jumbotron sidebar">
+					<div class="sidebar">
 						<h3 style="text-align: center; ">Comics</h3>
-						<ul>
-							<li><a href="#comics/popular"> Popular <span class="glyphicon glyphicon-heart"> </span></a></li>
-							<li><a href="#comics/qualifications"> Qualifications <span class="glyphicon glyphicon-star"> </span></a></li>
-							<li><a href="#comics/top_searched"> Top Searches <span class="glyphicon glyphicon-search"> </span></a></li>
-							<li><a href="#comics/most_recommended"> Most Recommended <span class="glyphicon glyphicon-thumbs-up"> </span></a></li>
+						<ul class="list-group">
+							<li class="list-group-item"><a href="#comics/popular"> Popular <span class="badge glyphicon glyphicon-heart"> </span></a></li>
+							<li class="list-group-item"><a href="#comics/qualifications"> Qualifications <span class="badge glyphicon glyphicon-star"> </span></a></li>
+							<li class="list-group-item"><a href="#comics/top_searched"> Top Searches <span class="badge glyphicon glyphicon-search"> </span></a></li>
+							<li class="list-group-item"><a href="#comics/most_recommended"> Most Recommended <span class="badge glyphicon glyphicon-thumbs-up"> </span></a></li>
 						</ul>
 					</div>				
 				</div>
@@ -80,7 +80,7 @@
 					                  <li><a href="#news/new_comic"> new comics</a></li>
 					                  <li><a href = "#news/most_loans"> most loans </a></li>
 					                  <li><a href = "#news/videos"> videos </a></li>
-					                   <li><a href = "#news/games"> games </a></li>
+					                   <li><a href = "#news/games/all"> games </a></li>
 					                </ul>				              		
 				              	</li>
 				            	<li class="dropdown">
@@ -103,7 +103,7 @@
 					                	<span class="glyphicon glyphicon-user"></span>  <%= guest %> <span class="caret"></span>
 					                </a>
 					                <ul class="dropdown-menu" role="menu">
-					                  <li><a href = "#user/profile">Account <span class="glyphicon glyphicon-dashboard"></span></a></li>
+					                  <li><a href = "#user/account"> Account <span class="glyphicon glyphicon-dashboard"></span></a></li>
 					                  <li><a href = "#user/profile">Profile <span class="glyphicon glyphicon-user"></span> </a></li>					                	
 					                  <li ><a href="#logout">Logout <span class="glyphicon glyphicon-off"> </span></a> </li>
 					                </ul>
@@ -141,11 +141,11 @@
 					<div class=" box social_network">
 						<h4> FOLLOW ME </h4>
 						<ul >
-							<li><a class="fbk" href="#home">  </a></li>
-							<li><a class="twt" href="#home"> </a></li>
-							<li><a class="lkn" href="#home"> </a></li>
-							<li><a class="youtube" href="#home"></a></li>
-							<li><a class="gplus" href="#home"> </a></li>
+							<li><a class="fbk" href="https://www.facebook.com">  </a></li>
+							<li><a class="twt" href="https://www.twitter.com"> </a></li>
+							<li><a class="lkn" href="https://www.linkedin.com"> </a></li>
+							<li><a class="youtube" href="https://www.youtube.com"></a></li>
+							<li><a class="gplus" href="https://plus.google.com"> </a></li>
 						</ul>					
 					</div>				
 				</div>				
@@ -332,15 +332,32 @@
 			</div>
 		</script>
 		
+		<!-- TEMPLATE CHARACTER DETAIL -->
+		<script type="text/template" id="tpl_character_single">
+				 <div class="cover col-md-3" style="float: left;">
+                 	<img src="<%= jsonCharacter.cover %>" alt="" class="img-rounded img-responsive">
+                 </div>
+		    	 <div class="profile col-md-9" style="float: right; ">
+		            <div class="col-sm-12">
+		                <div class="col-xs-12 col-sm-8">
+		                    <p><strong>Name: </strong>  <%= jsonCharacter.name %>. </p>
+		                    <p><strong>Powers: </strong>  <%= jsonCharacter.powers %>. </p>
+		                    <p><strong>Details:</strong></p>
+		                    <p><%= jsonCharacter.description %></p>
+		                </div>
+		          	</div>
+				</div>
+		</script>
+		
 		<!-- TEMPLATE LIST OF COMICS BY GENRE  -->
 		<script type="text/template" id="tpl_list_byGenre">
 			<div class="panel panel-default">
-				<div class="panel-heading"> <%= comic.get('genre') %> </div>
+				<div class="panel-heading"> Genre:<strong> <%= genre %> </strong>  </div>
 				<ul class="list-group">
 					<% _.each(jsonComic, function(comic){ %>
 					<li class="list-group-item" style="float: left; ">
-						<a href="#comics/<%= comic.get('id') %>">
-							<img src="<%= comic.get('cover') %>" />
+						<a href="#comics/<%= comic.id %>">
+							<img src="<%= comic.cover %>" />
 						</a>
 					</li>
 					<% }) %>
@@ -349,11 +366,13 @@
 		</script>
 		<!-- TEMPLATE COMIC DETAILS -->
 		<script type="text/template" id="tpl_comic_detail">
-			<div class="jumbotron">
-				 <div class="cover">
-                 	<img src="img/covers/<%= comic.cover %>" alt="" class="img-rounded img-responsive">
+				 <div class="cover col-md-3" style="float: left;">
+                 	<img src="<%= jsonComic.cover %>" alt="" class="img-rounded img-responsive">
+                 	<p> 
+                 		<span class="glyphicon glyphicon-thumbs-up" style="cursor: pointer; "></span><strong> <%= jsonComic.recommended %></strong>	
+                 	</p>
                  </div>
-		    	 <div class="profile">
+		    	 <div class="profile col-md-9" style="float: right; ">
 		            <div class="col-sm-12">
 		                <div class="col-xs-12 col-sm-8">
 		                    <p><strong>Title: </strong>  <%= jsonComic.title %>. </p>
@@ -362,6 +381,11 @@
 		                    <p><strong>Genre: </strong>  <%= jsonComic.genre %>. </p>
 		                    <p><strong>Details:</strong></p>
 		                    <p><%= jsonComic.detail %></p>
+		                    <% if (jsonComic.available) {%>
+		                    	<button type="button" class="btn btn-primary"> borrow </button>
+		                    <% }else{ %>
+		                    	<button type="button" class="btn btn-danger"> not available! </button>
+		                    <% } %>
 		                </div>
 <!--		                	<div class="col-xs-12 col-sm-4 text-center">
 		          </div> -->
@@ -369,6 +393,39 @@
 				</div>
 		</script>
 		
+		<!-- TEMPLATE LIST OF GAMES -->
+		<script type="text/template" id="tpl_list_games">
+			<div class="panel panel-default">
+				<div class="panel-heading"> Games </div>
+				<ul class="list-group">
+					<% _.each(jsonGame, function(game){ %>
+					<li class="list-group-item" style="float: left; ">
+						<a href="#news/games/<%= game.id %>">
+							<img src="<%= game.cover %>" />
+						</a>
+					</li>
+					<% }) %>
+				</ul>
+			</div>
+		</script>
+
+		<!-- TEMPLATE GAME DETAIL -->
+		<script type="text/template" id="tpl_game_single">
+				 <div class="cover col-md-3" style="float: left;">
+                 	<img src="<%= jsonGame.cover %>" alt="" class="img-rounded img-responsive">
+                 </div>
+		    	 <div class="profile col-md-9" style="float: right; ">
+		            <div class="col-sm-12">
+		                <div class="col-xs-12 col-sm-8">
+		                    <p><strong>Name: </strong>  <%= jsonGame.name %>. </p>
+		                    <p><strong>Year: </strong>  <%= jsonGame.year %>. </p>
+		                    <p><strong>Details:</strong></p>
+		                    <p><%= jsonGame.detail %></p>
+		                </div>
+		          	</div>
+				</div>
+		</script>
+				
 		<!-- TEMPLATE USER PROFILE  -->
 		<script type="text/template" id="tpl_user_profile">
 			<div class="row">
@@ -409,6 +466,7 @@
 		<script src="js/models/comic_model.js"></script>
 		<script src="js/models/character_model.js"></script>
 		<script src="js/models/loan_model.js"></script>
+		<script src="js/models/game_model.js"></script>
 		
 		<!-- collections -->
 		<script src="js/collections/user_collection.js"></script>
@@ -416,6 +474,7 @@
 		<script src="js/collections/comic_collection.js"></script>
 		<script src="js/collections/character_collection.js"></script>
 		<script src="js/collections/loan_collection.js"></script>
+				<script src="js/collections/game_collection.js"></script>
 		
 		<!-- partial section -->
 		<script src="js/views/partials/sidebar_view.js"></script>
@@ -427,6 +486,7 @@
 		<script src="js/views/auth_view.js"></script>
 		<script src="js/views/comic_view.js"></script>
 		<script src="js/views/character_view.js"></script>
+				<script src="js/views/game_view.js"></script>
 		<script src="js/views/home_view.js"></script>
 		<script src="js/views/admin_view.js"></script>
 

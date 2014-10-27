@@ -3,6 +3,7 @@
 /*
  * LOGIN AND REGISTER VIEW
  */
+
 .login-title, .register-title{ 
 	font-weight: bold; 
 	float:left	
@@ -20,6 +21,7 @@
 	top:  25%;
 	left: 40%;
 }
+
 /*
  *  HOME VIEW
  */
@@ -52,6 +54,9 @@ span.glyphicon.glyphicon-dashboard, span.glyphicon.glyphicon-off, span.glyphicon
 }
 
 
+.profile p { width: 435px; }
+
+
 .col-centered {
     float: none;
     margin: 0 auto;
@@ -66,27 +71,39 @@ span.glyphicon.glyphicon-dashboard, span.glyphicon.glyphicon-off, span.glyphicon
 /*
  * SIDEBAR SECTION
  */
-.jumbotron.sidebar ul li { 
+.sidebar ul li { 
 	list-style: none; 
 	text-align: left;
+}
+
+
+.sidebar .list-group .badge {
+	float: right;
+}
+
+.sidebar .badge:hover{
+	color: #428bca;
+}
+.sidebar {
+	padding-left: auto;
+	padding-right: auto;
 }
 
 #sidebar_content { float: right; }
 
 .sidebar h4 { text-align: center; }
 
-.jumbotron.sidebar ul {
-	width: 200px;
-	padding: 10px;
-	height: 104px;
-}
+
 
 /*
  *  FOOTER SECTION
  */
 
 #footer_content { width: 1140px; }
-#footer_content .col-md-12 { background-color: #eee; }
+#footer_content .col-md-12 { 
+	background-color: #eee; 
+	border-radius: 25px
+}
 
 .box {
 	display: inline-block;

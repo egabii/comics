@@ -61,6 +61,10 @@ app.AuthView = Backbone.View.extend({
 
 	},
 	
+	validate: function (){
+		
+	},
+	
 	register: function ()
 	{ 
 		location.hash = '#register';
