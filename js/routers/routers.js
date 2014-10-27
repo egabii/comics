@@ -15,7 +15,10 @@ app.Routers = Backbone.Router.extend({
 		'logout'						: 'logout',
 		'comics'						: 'comics',
 		'comics/most_recommended'		: 'mostRecommended',
-		'comics/:id'					: 'comicDetail',
+		'comics/top_searched'			: 'topSearched',
+		'comics/qualifications'			: 'qualification',
+		'characters/all'				: 'listCharacters',
+		'genre/:type'					: 'listByGenre',		
 		'user/profile/:id'				: 'profile'
 	},
 	
@@ -36,16 +39,19 @@ app.Routers = Backbone.Router.extend({
 	
     	if (login){
     		$('#sidebar_content').removeClass('hidden');
+    		$('header').removeClass('hidden');
     		app.home_view.render();
     		app.navbar_guest_view.render(app.session_collection.get(0).get('id_user'));
     		app.footer_view.render();
     	}
-    },	
+    },
+    
 	comics: function ()
 	{
 		var login = app.session_collection.check_login();
 		if (login){
 			$('#sidebar_content').removeClass('hidden');
+			$('header').removeClass('hidden');
 			app.comic_view.renderList();
 			app.navbar_guest_view.render(app.session_collection.get(0).get('id_user'));
     		app.footer_view.render();
@@ -58,26 +64,71 @@ app.Routers = Backbone.Router.extend({
 		var login = app.session_collection.check_login();
 		if (login){
 			$('#sidebar_content').removeClass('hidden');
+    		$('header').removeClass('hidden');
 			app.comic_view.renderMostRecommended();
 			app.navbar_guest_view.render(app.session_collection.get(0).get('id_user'));
     		app.footer_view.render();		
 		}
 	},
 	
-	comicDetail: function (id)
+	topSearched: function ()
 	{
 		var login = app.session_collection.check_login();
 		if (login){
-			app.comic_view.renderComicDetail(id);
+			$('#sidebar_content').removeClass('hidden');
+    		$('header').removeClass('hidden');
+			app.comic_view.renderTopSearched();
 			app.navbar_guest_view.render(app.session_collection.get(0).get('id_user'));
-    		app.footer_view.render();			
-		}
+    		app.footer_view.render();		
+		}		
 	},
 	
-	profile: function(id)
+	qualification: function ()
 	{
-		
+		var login = app.session_collection.check_login();
+		if (login){
+			$('#sidebar_content').removeClass('hidden');
+    		$('header').removeClass('hidden');
+			app.comic_view.renderQualification();
+			app.navbar_guest_view.render(app.session_collection.get(0).get('id_user'));
+    		app.footer_view.render();		
+		}		
+	}, 
+	
+/*	comicDetail: function (id)
+	{
+		var login = app.session_collection.check_login();
+		if (login){
+			$('#sidebar_content').removeClass('hidden');
+			app.comic_view.renderComicDetail(id);
+			app.navbar_guest_view.render(app.session_collection.get(0).get('id_user'));
+    		app.footer_view.render();		
+		}	
+	},  */
+	
+	listCharacters: function ()
+	{
+		var login = app.session_collection.check_login();
+		if (login){
+			$('#sidebar_content').removeClass('hidden');
+			//app.comic_view.renderComicDetail(id);
+			app.character_view.renderList();
+			app.navbar_guest_view.render(app.session_collection.get(0).get('id_user'));
+    		app.footer_view.render();		
+		}			
 	},
+	
+	listByGenre: function(type)
+	{
+		var login = app.session_collection.check_login();
+		if (login){
+			$('#sidebar_content').removeClass('hidden');
+			app.comic_view.renderListByGenre(type);
+			app.navbar_guest_view.render(app.session_collection.get(0).get('id_user'));
+    		app.footer_view.render();		
+		}			
+	},
+		
 	logout: function () 
 	{ 
 		if (app.auth_view.logout()){

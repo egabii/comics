@@ -32,14 +32,35 @@ app.comicView = Backbone.View.extend({
 		recommendedView.render(most_recommended);
 	},
 	
+	renderTopSearched: function ()
+	{
+		var top_searched = app.comic_collection.top_searched();
+		var top_searched_view = new app.comicTopSearchedView();
+		top_searched_view.render(top_searched);
+	},
+	
+	renderQualification: function ()
+	{
+		var q = app.comic_collection.most_qualifications();
+		var q_view = new app.comicQualificationView();
+		q_view.render(q);
+	},
+	
+	renderListByGenre: function (genre)
+	{
+		var list_by_genre = app.comic_collection.list_byGenre(genre);
+		var list_byGenre_view = new app.comicListByGenreView();
+		list_byGenre_view.render(list_by_genre);	
+	},
+	
 	// render a model view
 	renderComicDetail: function (id)
 	{	
 		app.comic_collection.fetch();
 		var comic = app.comic_collection.get(id);
-		var comic_detail_view = new app.comicDetailView({model: comic});
+		var comic_detail_view = new app.comicSingleView({ model: comic });
 		comic_detail_view.render();
-	},
+	}, 
 	
 });
 
@@ -58,7 +79,7 @@ app.comicListView = Backbone.View.extend({
 	}
 });
 
-app.comicDetailView = Backbone.View.extend({
+/*app.comicSingleView = Backbone.View.extend({
 	
 	el:'#app_content',
 	template: $('#tpl_comic_detail').html(),
@@ -66,11 +87,11 @@ app.comicDetailView = Backbone.View.extend({
 	render: function ()
 	{
 		$('#app_content').addClass('col-md-9'); 
-		var tpl = _.template(this.template, { jsonComic: this.model.toJSON() });
+		var tpl = _.template(this.template, { jsonComic: this.model.attributes });
 		this.$el.html( tpl );
 		return this;
 	}
-});
+}); */ 
 
 app.comicRecommendedView = Backbone.View.extend({
 	el:'#app_content',
@@ -87,8 +108,34 @@ app.comicRecommendedView = Backbone.View.extend({
 });
 
 app.comicTopSearchedView = Backbone.View.extend({
-	eñ:'#app_content',
+	el:'#app_content',
 	template: $('#tpl_top_searched').html(),
+	
+	render: function (comics)
+	{
+		$('#app_content').addClass('col-md-9'); 
+		var tpl = _.template(this.template, { jsonComic: comics });
+		this.$el.html( tpl );
+		return this; 
+	}
+});
+
+app.comicQualificationView = Backbone.View.extend({
+	el:'#app_content',
+	template: $('#tpl_qualification').html(),
+	
+	render: function (comics)
+	{
+		$('#app_content').addClass('col-md-9'); 
+		var tpl = _.template(this.template, { jsonComic: comics });
+		this.$el.html( tpl );
+		return this; 
+	}
+});
+
+app.comicListByGenreView = Backbone.View.extend({
+	el:'#app_content',
+	template: $('#tpl_list_byGenre').html(),
 	
 	render: function (comics)
 	{

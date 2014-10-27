@@ -37,7 +37,7 @@ app.UserCollection = Backbone.Collection.extend({
 				var user = new app.userModel(data);
 				this.add(user);
 				user.save();
-				//this.fetch();
+				this.fetch();
 				return true;
 			}
 			return false;

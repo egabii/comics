@@ -8,14 +8,22 @@
 	float:left	
 }
 
-#login-form, #register-form {
-	position: fixed;
+
+#login-form, #register-form { position: fixed; }
+
+#register-form {
+	top: 10%;
+	left: 40%;
+}
+
+#login-form {
 	top:  25%;
-	left: 38%;
+	left: 40%;
 }
 /*
  *  HOME VIEW
  */
+
 div.page-header {
 	background-image: url('/img/covers_.jpg');
 	height: 300px;
@@ -76,6 +84,8 @@ span.glyphicon.glyphicon-dashboard, span.glyphicon.glyphicon-off, span.glyphicon
 /*
  *  FOOTER SECTION
  */
+
+#footer_content { width: 1140px; }
 #footer_content .col-md-12 { background-color: #eee; }
 
 .box {
@@ -104,7 +114,7 @@ span.glyphicon.glyphicon-dashboard, span.glyphicon.glyphicon-off, span.glyphicon
 .box ul { padding-left: 0; }
 
 /*
- *  SOCIAL NETWORK
+ *  SOCIAL NETWORK::SPRITE
  */
 .box.social_network ul li {
 	width: 70px;

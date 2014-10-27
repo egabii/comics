@@ -20,14 +20,36 @@ app.comicCollection = Backbone.Collection.extend({
 		});
 	},
 	
-	most_searched: function ()
+	top_searched: function ()
 	{
 		var comics = this.toJSON(); // array of models
 		
 		return comics.sort(function(a,b){
 			return b.searched - a.searched;
-		}).slice(0,5);		
+		});		
 	},
+	
+	most_qualifications: function ()
+	{
+		var comics = this.toJSON(); // array of models
+		
+		return comics.sort(function(a,b){
+			return b.qualification - a.qualification;
+		});				
+	},
+	
+	list_byGenre: function (genre)
+	{
+		switch(genre){
+			case 'science-fiction'	: return this.where({genre: 'science-fiction'}); break;
+			case 'police'			: return this.where({ genre: 'police' }); break;
+			case 'comedy'			: return this.where({ genre: 'comedy' }); break;
+			case 'thriller'			: return this.where({ genre: 'thriller' }); break;
+			case 'adventure'		: return this.where({ genre: 'adventure' }); break;
+			
+		}
+	},
+	
 	nextOrder: function()
 	{
 		if (!this.length){
@@ -46,6 +68,8 @@ app.comicCollection = Backbone.Collection.extend({
 app.comic_collection = new app.comicCollection();
 //app.comic_collection.fetch();
 
+// creating models for collections 
+
 app.comic_collection.create({
 	id: app.comic_collection.nextOrder(), 
 	title:'Batman Dectective Vol 2-22',
@@ -55,7 +79,8 @@ app.comic_collection.create({
 	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',
 	genre:'police',
 	recommended:2,
-	searched: 300
+	searched: 300,
+	qualification: 20
 });
 
 app.comic_collection.create({
@@ -63,11 +88,12 @@ app.comic_collection.create({
 	title:'Daredevil',
 	creator:'universal comics',
 	edition:'daredevil edition',
-	cover: 'img/covers/daredevil_thManWithOutFear.jpg',
+	cover: 'img/covers/daredevil_theManWithOutFear.jpg',
 	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',
-	genre:'action',
+	genre:'thriller',
 	recommended:20,
-	searched: 1
+	searched: 1,
+	qualification: 34
 });
 
 app.comic_collection.create({
@@ -75,11 +101,12 @@ app.comic_collection.create({
 	title:'Superman vs Booser Gold',
 	creator:'universal comics',
 	edition: 'special edition',
-	cover: 'img/covers/superman_vs_voosterGold.jpg',
+	cover: 'img/covers/superman_vs_boosterGold.jpg',
 	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',
-	genre:'superheroe',
+	genre:'adventure',
 	recommended:12,
-	searched: 50
+	searched: 50,
+	qualification: 40
 });
 
 app.comic_collection.create({
@@ -89,10 +116,11 @@ app.comic_collection.create({
 	edition: 'thor edition',
 	cover: 'img/covers/Thor.jpg',
 	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',
-	genre:'superheroe',
+	genre:'adventure',
 	recommended:100,
 	available: false,
-	searched: 120
+	searched: 320,
+	qualification: 60
 });
 
 app.comic_collection.create({
@@ -102,9 +130,10 @@ app.comic_collection.create({
 	edition:'first edition',
 	cover: 'img/covers/thor_journey_into_mystery.jpg',
 	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',
-	genre:'superheroe',
+	genre:'adventure',
 	recommended:12,
-	searched: 15
+	searched: 15,
+	qualification: 10
 });
 
 app.comic_collection.create({
@@ -116,6 +145,8 @@ app.comic_collection.create({
 	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',
 	genre:'police',
 	recommended:50,
+	searched: 79,
+	qualification: 120	
 });
 
 app.comic_collection.create({
@@ -128,6 +159,7 @@ app.comic_collection.create({
 	genre:'science-fiction',
 	recommended:124,
 	searched: 205,
+	qualification: 100,
 	available: false
 });
 
@@ -140,7 +172,21 @@ app.comic_collection.create({
 	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',
 	genre:'thriller',
 	recommended: 60,
-	searched: 40
+	searched: 40,
+	qualification: 90
+});
+
+app.comic_collection.create({
+	id: app.comic_collection.nextOrder(), 
+	title:'The Simpson',
+	creator: 'Matt Groening',
+	edition: 'Mad Edition',
+	cover: 'img/covers/Simpsons_Comics_201.png',
+	detail: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras volutpat scelerisque diam ut accumsan. Vivamus',
+	genre:'Comedy',
+	recommended: 260,
+	searched: 90,
+	qualification: 2
 });
 
 

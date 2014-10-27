@@ -42,8 +42,8 @@
 						<h3 style="text-align: center; ">Comics</h3>
 						<ul>
 							<li><a href="#comics/popular"> Popular <span class="glyphicon glyphicon-heart"> </span></a></li>
-							<li><a href="#comics/qualifiations"> Qualifications <span class="glyphicon glyphicon-star"> </span></a></li>
-							<li><a href="#comics/top_search"> Top Searches <span class="glyphicon glyphicon-search"> </span></a></li>
+							<li><a href="#comics/qualifications"> Qualifications <span class="glyphicon glyphicon-star"> </span></a></li>
+							<li><a href="#comics/top_searched"> Top Searches <span class="glyphicon glyphicon-search"> </span></a></li>
 							<li><a href="#comics/most_recommended"> Most Recommended <span class="glyphicon glyphicon-thumbs-up"> </span></a></li>
 						</ul>
 					</div>				
@@ -71,7 +71,7 @@
 				            <ul class="nav navbar-nav">
 				            	<li><a href="#home"> Home </a></li>
 				              	<li><a href="#comics"> Comics </a></li>
-				              	<li><a href="#characters"> Characters </a></li>
+				              	<li><a href="#characters/all"> Characters </a></li>
 				              	<li class="dropdown">
 				              		<a href="#home" class="dropdown-toggle" data-toggle="dropdown"> 
 				              			News <span class="caret"></span> 
@@ -88,10 +88,11 @@
 					                	Genre <span class="caret"></span>
 					                </a>
 					                <ul class="dropdown-menu" role="menu">
-					                  <li><a href="#genre/sci_fi"> Science Fiction</a></li>
+					                  <li><a href = "#genre/science-fiction"> Science Fiction</a></li>
 					                  <li><a href = "#genre/police"> Police </a></li>
 					                  <li><a href = "#genre/thriller"> Thriller </a></li>
-					                   <li><a href = "#genre/adventure"> Adventure </a></li>
+					                  <li><a href = "#genre/adventure"> Adventure </a></li>
+					                  <li><a href = "#genre/comedy"> Comedy </a></li>
 					                </ul>
 				           	 	</li>
 				            </ul>
@@ -124,9 +125,9 @@
 						<ul>
 							<li><a href="#home"> Home </a></li>
 							<li><a href="#comics"> Comics </a></li>
-				            <li><a href="#home"> Characters </a></li>
-				            <li><a href="#home"> News </a></li>
-				            <li><a href="#home"> Genre </a></li>
+				            <li><a href="#characters/all"> Characters </a></li>
+				            <li><a href="#news"> News </a></li>
+				            <li><a href="#genre"> Genre </a></li>
 						</ul>
 					</div>
 					<div class=" box contact-box">
@@ -228,9 +229,7 @@
 				 cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 			</div> 
 		</script>
-		
-
-		
+				
 		<!-- TEMPLATE LIST OF COMICS -->
 		<script type="text/template" id="list_comics">
 			<div class="panel panel-default">
@@ -269,12 +268,13 @@
 			</div>
 		</script>
 		
+		<!-- TEMPLATE RECOMMENDED LIST -->
 		<script type="text/template" id="tpl_reco_comics">
-			<div id="recommended" class="panel panel-default">
+			<div class="panel panel-default">
 				<div class="panel-heading"> Most Recommended </div>
 				<ul class="list-group">
 					<% _.each(jsonComic, function(comic){ %>
-					<li class="list-group-item">
+					<li class="list-group-item" style="float: left; ">
 						<a href="#comics/<%= comic.id %>">
 							<img src="<%= comic.cover %>" />
 						</a>
@@ -284,6 +284,69 @@
 			</div>
 		</script>
 		
+		<!-- TEMPLATE TOP SEARCHED LIST -->
+		<script type="text/template" id="tpl_top_searched">
+			<div class="panel panel-default">
+				<div class="panel-heading"> Top Searched </div>
+				<ul class="list-group">
+					<% _.each(jsonComic, function(comic){ %>
+					<li class="list-group-item" style="float: left; ">
+						<a href="#comics/<%= comic.id %>">
+							<img src="<%= comic.cover %>" />
+						</a>
+					</li>
+					<% }) %>
+				</ul>
+			</div>
+		</script>
+		
+		<!-- TEMPLATE MOST QUALIFICATIONS LIST -->
+		<script type="text/template" id="tpl_qualification">
+			<div class="panel panel-default">
+				<div class="panel-heading"> Qualification </div>
+				<ul class="list-group">
+					<% _.each(jsonComic, function(comic){ %>
+					<li class="list-group-item" style="float: left; ">
+						<a href="#comics/<%= comic.id %>">
+							<img src="<%= comic.cover %>" />
+						</a>
+					</li>
+					<% }) %>
+				</ul>
+			</div>
+		</script>
+		
+		<!-- TEMPLATE LIST OF CHARACTERS -->
+		<script type="text/template" id="tpl_list_character">
+			<div class="panel panel-default">
+				<div class="panel-heading"> Characters </div>
+				<ul class="list-group">
+					<% _.each(jsonCharacter, function(character){ %>
+					<li class="list-group-item" style="float: left; ">
+						<a href="#characters/<%= character.id %>">
+							<img src="<%= character.cover %>" />
+						</a>
+					</li>
+					<% }) %>
+				</ul>
+			</div>
+		</script>
+		
+		<!-- TEMPLATE LIST OF COMICS BY GENRE  -->
+		<script type="text/template" id="tpl_list_byGenre">
+			<div class="panel panel-default">
+				<div class="panel-heading"> <%= comic.get('genre') %> </div>
+				<ul class="list-group">
+					<% _.each(jsonComic, function(comic){ %>
+					<li class="list-group-item" style="float: left; ">
+						<a href="#comics/<%= comic.get('id') %>">
+							<img src="<%= comic.get('cover') %>" />
+						</a>
+					</li>
+					<% }) %>
+				</ul>
+			</div>
+		</script>
 		<!-- TEMPLATE COMIC DETAILS -->
 		<script type="text/template" id="tpl_comic_detail">
 			<div class="jumbotron">
@@ -344,12 +407,14 @@
 		<script src="js/models/user_model.js"></script>
 		<script src="js/models/session_model.js"></script>
 		<script src="js/models/comic_model.js"></script>
+		<script src="js/models/character_model.js"></script>
 		<script src="js/models/loan_model.js"></script>
 		
 		<!-- collections -->
 		<script src="js/collections/user_collection.js"></script>
 		<script src="js/collections/session_collection.js"></script>
 		<script src="js/collections/comic_collection.js"></script>
+		<script src="js/collections/character_collection.js"></script>
 		<script src="js/collections/loan_collection.js"></script>
 		
 		<!-- partial section -->
@@ -361,6 +426,7 @@
 		<!-- views -->
 		<script src="js/views/auth_view.js"></script>
 		<script src="js/views/comic_view.js"></script>
+		<script src="js/views/character_view.js"></script>
 		<script src="js/views/home_view.js"></script>
 		<script src="js/views/admin_view.js"></script>
 

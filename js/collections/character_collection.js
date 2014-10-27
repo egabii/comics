@@ -10,7 +10,7 @@
 app.characterCollection = Backbone.Collection.extend({
 	
 	model: app.characterModel,
-	localStorage: new Backbone.LocalStorage('character_store')
+	localStorage: new Backbone.LocalStorage('character_store'),
 	
 	nextOrder: function ()
 	{
@@ -26,27 +26,45 @@ app.characterCollection = Backbone.Collection.extend({
 app.character_collection = new app.characterCollection();
 
 app.character_collection.create({
-		id: app.characterModel.nextOrder(),
+		id: app.character_collection.nextOrder(),
 		name:'Batman',
-		powers:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.','
+		powers:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean leo risus, consequat vel tristique pretium, pretium id felis.',
 		cover:'img/characters/Batman.png'
 });
 
 
 app.character_collection.create({
-		id: app.characterModel.nextOrder(),
-		name:'Batman',
-		powers:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.','
+		id: app.character_collection.nextOrder(),
+		name:'Character2',
+		powers:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean leo risus, consequat vel tristique pretium, pretium id felis.',
-		cover:'img/characters/Batman.png'
+		cover:'img/characters/character2.png'
 });
 
 
 app.character_collection.create({
-		id: app.characterModel.nextOrder(),
-		name:'Batman',
-		powers:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.','
+		id: app.character_collection.nextOrder(),
+		name:'Iron Man',
+		powers:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean leo risus, consequat vel tristique pretium, pretium id felis.',
-		cover:'img/characters/Batman.png'
+		cover:'img/characters/IronMan.png'
 });
+
+app.character_collection.create({
+		id: app.character_collection.nextOrder(),
+		name:'Spider Man',
+		powers:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+		description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean leo risus, consequat vel tristique pretium, pretium id felis.',
+		cover:'img/characters/Spiderman.png'
+});
+
+app.character_collection.create({
+		id: app.character_collection.nextOrder(),
+		name:'Superman',
+		powers:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+		description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean leo risus, consequat vel tristique pretium, pretium id felis.',
+		cover:'img/characters/Superman.png'
+});
+
+app.character_collection.fetch();

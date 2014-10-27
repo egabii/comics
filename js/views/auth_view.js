@@ -20,7 +20,7 @@ app.AuthView = Backbone.View.extend({
 	render: function ()
 	{ 
 		$('#app_content').removeClass('col-md-9');
-		$('header').remove();
+		$('header').addClass('hidden');
 		this.$el.html(this.template); 
 	}, 
 	
@@ -89,6 +89,8 @@ app.RegisterView = Backbone.View.extend({
 
 	render: function ()
 	{ 
+		$('header').remove();
+		$('#sidebar_content').addClass('hidden');
 		this.$el.html(this.template); 
 		return this;	
 	},
